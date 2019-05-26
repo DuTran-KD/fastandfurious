@@ -73,7 +73,7 @@
                 {
                     <thead>
 
-                        <tr>
+                        <tr style="text-align:center">
                             <th></th>
                             <th>Thứ</th>
                             <th>Thời gian học</th>
@@ -83,13 +83,13 @@
 
                     foreach (var item in sch)
                     {
-                        <tr id="listschedulee">
-                            <th class="checkbox-group required"><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" /></th>
-                            <th scope="row" id="day-@item.schedule_id">@item.day_otw</th>
-                            <th id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</th>
-                            <th>
-                                <input type="number" id="soBuoi" name="soBuoi" max="99" min="5" value="10" class="form-control" style="width:100px" />
-                            </th>
+                        <tr id="listschedulee" style="text-align:center">
+                            <td class="checkbox-group required"><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" /></td>
+                            <td scope="row" id="day-@item.schedule_id">@item.day_otw</td>
+                            <td id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</td>
+                            <td>
+                                <input type="number" id="soBuoi" name="soBuoi" max="99" min="5" value="10" class="form-control" style="width:100px; margin:auto" />
+                            </td>
                         </tr>
                     }
                 }

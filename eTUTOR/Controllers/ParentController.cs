@@ -159,8 +159,8 @@ namespace eTUTOR.Controllers
             }
             else if (files.ContentLength > 0)
             {
-                int MaxContentLength = 1024 * 1024 * 3; //3 MB
-                string[] AllowedFileExtensions = new string[] { ".jpg", ".png", ".pdf" };
+                int MaxContentLength = 1024 * 1024 * 4; //3 MB
+                string[] AllowedFileExtensions = new string[] { ".jpg", ".png" };
                 if (!AllowedFileExtensions.Contains(files.FileName.Substring(files.FileName.LastIndexOf('.'))))
                 {
                     setAlert("Vui lòng chọn file có đuôi : .JPG .PNG", "error");
@@ -168,7 +168,7 @@ namespace eTUTOR.Controllers
                 }
                 else if (files.ContentLength > MaxContentLength)
                 {
-                    setAlert("File bạn tải lên quá lớn, tối đa :" + MaxContentLength + "MB", "error");
+                    setAlert("File bạn tải lên quá lớn, tối đa :" + 4 + "MB", "error");
                     return RedirectToAction("InfoOfParent", "Parent");
                 }
                 else
@@ -179,20 +179,21 @@ namespace eTUTOR.Controllers
                     files.SaveAs(path);
                     //get student
                     int n = int.Parse(idStudent);
-                    var student = db.students.SingleOrDefault(x => x.student_id == n);
+                    var studentt = db.students.SingleOrDefault(x => x.student_id == n);
                     //xóa file ảnh cũ
-                    var photoName = student.avatar;
+                    if(studentt.avatar != null) { 
+                    var photoName = studentt.avatar;
                     var fullPath = Path.Combine(Server.MapPath("~/Content/img/avatar/student"), photoName);
                     if (System.IO.File.Exists(fullPath))
-
                     {
                         System.IO.File.Delete(fullPath);
                     }
-                    student.avatar = fileName;
-                    student.birthday = DateTime.Parse(bod);
-                    student.fullname = fullname;
-                    student.email = email;
-                    student.username = username;
+                    }
+                    studentt.avatar = fileName;
+                    studentt.birthday = DateTime.Parse(bod);
+                    studentt.fullname = fullname;
+                    studentt.email = email;
+                    studentt.username = username;
                     db.SaveChanges();
                     setAlert("Tải ảnh đại diện thành công", "success");
                     ModelState.Clear();
