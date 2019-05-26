@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ThongKe";
+
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+}
+<div class="container" >
+
+    <div id="loader"></div>
+    <div class="onTop" style="background-color:white; height:200px">
+        <form action="~/Admin/Admin/ThongKe" method="get" class="" style="padding:30px" name="thongke">
+            <div class="pull-left" style="width:400px">
+                <label style="color:indianred">Chọn kiểu thống kê</label>
+                <select name="kieuTK" class="form-control" id="kieuTK" onchange="tkdangky()">
+                    <option value="slDangKy" onclick="tkdangky()"> Thống kê số lượng người đăng ký</option>
+                    <option value="slDangKyGiaSu" onclick="tkdangkyhoc()"> Thống kê số lượng đăng ký gia sư</option>
+                    <option value="slCacBuoiHocDienRa" onclick="tkdayhoc()"> Số lượng các buổi học đã diễn ra</option>
+                </select>
+            </div>
+        </form>
+        <div id="myDiv">
+            <div style="margin-top:5%;display:none" id="dangky" class="animate-bottom ">
+
+                <img src="@Url.Action("tkDangky")" alt="Chart" />
+            </div>
+            <div style="margin-top:5%;display:none" id="dayhoc" class="animate-bottom">
+
+                <img src="@Url.Action("tkDayhoc")" alt="Chart" />
+            </div>
+            <div style="margin-top:5%;display:none" id="dangkyhoc" class="animate-bottom">
+
+                <img src="@Url.Action("tkDangkyhoc")" alt="Chart" />
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var showPage = function () {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+        setTimeout(showPage, 10000);
+    
+    var x = document.getElementById("dayhoc");
+    var y = document.getElementById("dangkyhoc");
+    var z = document.getElementById("dangky");
+    function tkdangky() {
+        var a = $('#kieuTK :selected').val();
+        if (a == "slDangKy") {
+            x.style.display = "none";
+            y.style.display = "none";
+            z.style.display = "block";
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('.loader').load(function () {
+                    $('.loader').hide();
+                });
+            });
+        }
+        if (a == "slDangKyGiaSu") {
+            x.style.display = "none";
+            y.style.display = "block";
+            z.style.display = "none";
+        }
+        if (a == "slCacBuoiHocDienRa") {
+            x.style.display = "block";
+            y.style.display = "none";
+            z.style.display = "none";
+        }
+    }
+</script>

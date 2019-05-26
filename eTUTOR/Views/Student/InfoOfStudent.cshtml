@@ -1,0 +1,584 @@
+﻿@model eTUTOR.Models.student
+@using eTUTOR.Models;
+@{
+    ViewBag.Title = "InfoOfStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    eTUITOREntities db = new eTUITOREntities();
+
+    var ses = db.sessions.ToList().Where(x => x.student_id == Model.student_id && x.status.status_id != 1);
+    DateTime birthday = Model.birthday.GetValueOrDefault();
+    string birthdayformat = birthday.ToString("dd/MM/yyyy");
+    int studentClass = Model.@class;
+}
+@section css{
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="~/Content/vendor/bootstrap/css/demo.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/avatar.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/student.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/responsive/student.css" rel="stylesheet" />
+    <style>
+        .stream {
+            color: #ea1111;
+        }
+        .no-drop {
+            cursor: no-drop;
+        }
+    </style>
+}
+@*col-sm-7 col-md-7 col-sm-12*@
+
+<div class="image-container set-full-height">
+
+    <div class="container row" style="margin-top:5%">
+        <div class="left col-sm-5 col-md-5 col-sm-12">
+            <img src="~/Content/img/avatar/student/@Html.DisplayFor(model => model.avatar)" class="ml-4 mt-4" height="200px" width="200px onerror="this.onerror = null; this.src='https://viima-app.s3.amazonaws.com/media/public/defaults/user-icon.png'"
+                 alt="avatar" style="border-radius: 10%;margin-top: 0px;">
+            <a class="btn btn-primary p-2" data-toggle="modal" data-target="#avatar"
+               style="margin-left: 5%">
+                <img src="/Content/img/edit.png" width="20px" height="20px" />
+            </a>
+            <div class="modal" id="avatar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="margin-left: 30%">Tải ảnh đại diện lên</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        @using (Html.BeginForm("changeAvatar",
+                        "Student",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                        {
+
+                        <div class="modal-body">
+                            <span style="color:red" id="feedback"></span>
+                            <input type="file" name="files" id="files" class="form-control"
+                                   accept=".jpg,.png" onchange="validate_fileupload(this);" /><br><br>
+                        </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Tải ảnh" class="btn-outline-success" 
+                                       onclick="return valid_form();" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <a href="#" style="display: inline-block"></a>
+            <!-- <img src="https://cdn3.iconfinder.com/data/icons/block/32/box_edit-512.png" width="30px" height="30px"></a> -->
+
+            <div class="namepro ml-4" style="text-align: center;">@Html.DisplayFor(model => model.fullname)</div>
+            <table class="table">
+
+                <tr>
+                    <td class="tdl">
+                        Tên đăng nhập
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.username)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Địa chỉ
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.parent.address)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Ngày sinh
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.birthday)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Số điện thoại
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.phone)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Email
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.email)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl" style="padding-top: 19px;">
+                        Lớp
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.@class)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Phụ huynh
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.parent.fullname)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#myModal"
+                                style="margin-left: 65%">
+                            Chỉnh sửa
+                        </button>
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="margin-left: 30%">Chỉnh sửa Tiểu sử</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <tr>
+                                                <td class="tdl">
+                                                    Họ và tên
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="fullname" value="@Model.fullname">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Tên đăng nhập
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="username" value="@Model.username">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Địa chỉ
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="address" value="@Model.parent.address">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Ngày sinh
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="datetime" id="birthday" value="@birthdayformat">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Số điện thoại
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="number" id="phone" value="@Model.phone">
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td class="tdl">
+                                                        Email
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="email" id="email" value="@Model.email">
+                                                    </td>
+                                                </tr>*@
+                                            <tr>
+                                                <td class="tdl" style="padding-top: 19px;">
+                                                    Lớp
+                                                </td>
+                                                <td class="tdr">
+                                                    <div class="form-wrapper">
+                                                        <select name="class" id="class" class="form-control" style="width: 300px">
+                                                            <option value="1">Lớp 1</option>
+                                                            <option value="2">Lớp 2</option>
+                                                            <option value="3">Lớp 3</option>
+                                                            <option value="4">Lớp 4</option>
+                                                            <option value="5">Lớp 5</option>
+                                                            <option value="6">Lớp 6</option>
+                                                            <option value="7">Lớp 7</option>
+                                                            <option value="8">Lớp 8</option>
+                                                            <option value="9">Lớp 9</option>
+                                                            <option value="10">Lớp 10</option>
+                                                            <option value="11">Lớp 11</option>
+                                                            <option value="12">Lớp 12</option>
+                                                        </select>
+                                                        <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="btn-profile-save">Lưu</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="right col-sm-7 col-md-7 col-sm-12">
+            <div>
+                <h3 class="p-3 pl-3 titleStudent">KÊNH HỌC SINH</h3>
+                <div id="demo-accordion-collapse" role="tablist">
+                    @*Danh sách buổi học*@
+                    <div class="card" >
+                        <div class="card-header" role="tab" id="accord2" style="border-radius: 10px; background-color:indianred; 
+                                                                                font-size: 8px; padding-left: 10px;
+                                                                                padding-bottom: 15px; padding-top: 0px">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapse-pane-2" role="button" aria-expanded="false" aria-controls="collapse-pane-2" style="font-size:20px">
+                                    Danh sách buổi học
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-pane-2" class="collapse" role="tabpanel" aria-labelledby="accord2"
+                             data-parent="#demo-accordion-collapse">
+                            <div class="card-body">
+
+                                <div class="form-wrapper pb-3">
+                                    <select name="" id="select-dotw" class="form-control"
+                                            style="border: none; border: 2px solid black; width: 30%; margin-left: 70%">
+                                        <option value="" disabled selected>Chọn thứ cần lọc</option>
+                                        <option value="-1">Chọn hết</option>
+                                        <option value="2">Thứ 2</option>
+                                        <option value="3">Thứ 3</option>
+                                        <option value="4">Thứ 4</option>
+                                        <option value="5">Thứ 5</option>
+                                        <option value="6">Thứ 6</option>
+                                        <option value="7">Thứ 7</option>
+                                        <option value="8">Chủ nhật</option>
+                                    </select>
+                                    <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+
+                                </div>
+
+                                <div id="sessionlist">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*Xem lịch sử học tập*@
+                    <div class="card">
+                        <div class="card-header" role="tab" id="accord6" style="border-radius: 10px; background-color: indianred; font-size: 20px; padding-left: 10px; padding-bottom: 15px; margin-top:10px">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapse-pane-6" role="button" aria-expanded="false"
+                                   aria-controls="collapse-pane-6" style="font-size:20px">
+                                    Xem lịch sử học tập
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-pane-6" class="collapse" role="tabpanel" aria-labelledby="accord6"
+                             data-parent="#demo-accordion-collapse">
+                            <div class="card-body">
+
+                                <table class="table" style="text-align: center;">
+                                    <tr>
+                                        <th>
+                                            Thứ
+                                        </th>
+                                        <th>
+                                            Gia sư
+                                        </th>
+                                        <th>
+                                            Môn học
+                                        </th>
+                                        <th>
+                                            Thời gian học
+                                        </th>
+
+                                        <th>
+                                            Ngày đã học
+                                        </th>
+                                    </tr>
+                                    @foreach (var hl in Model.history_lessons.ToList().Where(x => x.student_id == int.Parse(Session["UserID"].ToString())))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => hl.day_otw)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => hl.tutor.fullname)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => hl.subject)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => hl.start_time) - @Html.DisplayFor(modelItem => hl.end_time)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => hl.total_sessions)
+                                            </td>
+
+                                        </tr>
+                                    }
+
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card" >
+                        <div class="card-header" role="tab" id="accord6" style="border-radius: 10px; background-color: indianred; font-size: 20px; padding-left: 10px; padding-bottom: 15px; margin-top:10px">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#collapse-pane-7" role="button" aria-expanded="false"
+                                   aria-controls="collapse-pane-6" style="font-size:20px">
+                                    Lịch sử đăng ký khóa học
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-pane-7" class="collapse" role="tabpanel" aria-labelledby="accord6"
+                             data-parent="#demo-accordion-collapse">
+                            <div class="card-body">
+
+                                <table class="table" style="text-align: center;">
+                                    <tr>
+                                        <th>
+                                            Thứ
+                                        </th>
+                                        <th>
+                                            Gia sư
+                                        </th>
+                                        <th>
+                                            Môn học
+                                        </th>
+                                        <th>
+                                            Thời gian học
+                                        </th>
+                                        <th>
+                                            Tổng bài học
+                                        </th>
+                                        <th>
+                                            Trạng thái
+                                        </th>
+                                        <th>
+                                        </th>
+                                    </tr>
+                                    @foreach (var ss in ses)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ss.day_otw
+                                            </td>
+                                            <td>
+                                                @ss.tutor.fullname
+                                            </td>
+                                            <td>
+                                                @ss.subject.subject_name
+                                            </td>
+
+                                            <td>
+                                                @ss.start_time - @ss.end_time
+                                            </td>
+                                            <td>
+                                                @ss.total_sessions
+                                            </td>
+                                            <td>
+                                                @if (ss.status_tutor == 2)
+                                                {<p>Chờ gia sư duyệt</p>}
+                                                else if (ss.status_admin == 2)
+                                                { <p>Chờ admin duyệt</p>}
+                                            </td>
+
+
+                                        </tr>
+                                    }
+
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <script src="~/Content/vendor/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/jquery/jquery.bootstrap.wizard.js"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="~/Content/vendor/jquery/gsdk-bootstrap-wizard.js"></script>
+
+    <script src="~/Content/vendor/jquery/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+            getSessionList(-1);
+            $("#class").val(@studentClass);
+            $("#select-dotw").on("change", function () {
+                var dotw = $(this).val();
+                getSessionList(dotw);
+            });
+            $("#btn-profile-save").on("click", function () {
+                var user = {
+                    fullname: $("#fullname").val(),
+                    username: $("#username").val(),
+                    address: $("#address").val(),
+                    birthday: $("#birthday").val(),
+                    phone: $("#phone").val(),
+                    email: $("#email").val(),
+                    class: $("#class").val(),
+                }
+                let check = {
+                    fullname: false,
+                    username: false,
+                    address: false,
+                    birthday: false,
+                    phone: false,
+                    email: false,
+                    class: false,
+                }
+                user = JSON.stringify(user);
+                editProfileStudent(user);
+
+            })
+        })
+
+        function Base64toHex(base64) {
+            return window.atob(base64).split('')
+                .map(aChar => ('0' + aChar.charCodeAt(0).toString(16)).slice(-2)).join('');
+        }
+
+        function getSessionList(dotw) {
+            $.ajax({
+                type: "GET",
+                url: "/api/getSessionList/",
+                data: {dotw : dotw, student_id : @int.Parse(Session["UserID"].ToString())},
+                dataType: "html",
+                success: function (response) {
+                    $('#sessionlist').html(response);
+                    callStream();
+                }
+            });
+        }
+        function editProfileStudent(data) {
+            $.ajax({
+                type: "POST",
+                url: "/api/editProfileStudent/",
+                data: { data: data },
+                dataType: "json",
+                success: function (response) {
+                    alert(response.message);
+                    window.location.reload();
+                }
+            });
+        }
+
+        function callStream() {
+            detectStream();
+            $(".student_sub").on("click", function (e) {
+                if ($(this).children().hasClass('stream')) {
+                    var id = $(this).attr("data-subjectId");
+                    var name = window.btoa(unescape(encodeURIComponent($(this).attr("data-name"))));
+                    var url = 'https://etuitor.herokuapp.com/live/student' + `?p=${id.replace(/Thứ /gi, '').replace(/Chủ nhật/gi, '8')}&n=${Base64toHex(name)}&s=@Session.SessionID&t=${sessionStorage.getItem('token')}`;
+                    var strWindownFeatures = `toolbars=no,scrollbars=yes,status=no,resizable=no,location=no,width=${$(window).width()},height=${$(window).height()}`;
+                    WindowObject = window.open(url, "StreamEtutor", strWindownFeatures);
+                    WindowObject.document.close();
+                    WindowObject.focus();
+                } else {
+                    alert('Chưa tới giờ học');
+                    e.preventDefault();
+                }
+            });
+        }
+
+        function detectStream() {
+            var ws = new WebSocket('wss://etuitor.herokuapp.com/currentStream');
+
+            ws.onopen = function () {
+                ws.send(JSON.stringify({
+                    type: "student"
+                }));
+            };
+
+            ws.onmessage = function (event) {
+                $(".student_sub").each(function () {
+                    var id = $(this).attr("data-subjectId");
+                    var convertId = id.replace(/Thứ /gi, '').replace(/Chủ nhật/gi, '8');
+                    var data = JSON.parse(event.data);
+                    for (let item of data['class']) {
+                        if (data['status'] === "OPEN" && convertId === item) {
+                            $(this).children().addClass("stream");
+                            $(this).children().removeClass("no-drop");
+                        } else {
+                            $(this).children().removeClass("stream");
+                            $(this).children().addClass("no-drop");
+                        }
+                    }
+                });
+            };
+        }
+        //Check file on page
+        var valid = false;
+
+        function validate_fileupload(input_element) {
+            var el = document.getElementById("feedback");
+            var fileName = input_element.value;
+            var allowed_extensions = new Array("jpg", "png");
+            var file_extension = fileName.split('.').pop();
+            var FileSize = input_element.files[0].size / 1024 / 1024;
+            for (var i = 0; i < allowed_extensions.length; i++) {
+                if (allowed_extensions[i] == file_extension && FileSize < 4) {
+                    valid = true; // valid file extension
+                    el.innerHTML = "";
+                    return;
+                }
+            }
+            el.innerHTML = "File không hợp lệ, vui lòng tải file có dung lượng dưới 4MB và được lưu dưới dạng file JPG, PNG";
+            valid = false;
+        }
+
+        function valid_form() {
+            return valid;
+        }
+    </script>
+}
+<!--   Core JS Files   -->

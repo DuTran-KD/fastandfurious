@@ -1,0 +1,94 @@
+﻿
+<div class="sidebar" data-color="azure" data-background-color="black" data-image="~/Content/build/admin/img/sidebar-3.jpg">
+    <div class="logo">
+        <a href="@Url.Action("Dashboard","Admin")" class="simple-text logo-mini">
+                  
+        </a>
+        <a href="@Url.Action("Dashboard","Admin")" class="simple-text logo-normal">
+            eTuTor
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <div class="user">
+            <div class="photo">
+                <img src="~/Content/build/admin/img/faces/avatar.jpg" />
+            </div>
+            <div class="user-info">
+                <a data-toggle="collapse" href="#collapseExample" class="username">
+                    @if (Session["UserID"] != null)
+                    {
+                    <span>
+                        @Session["FullName"]
+                        <b class="caret"></b>
+                    </span>
+                    }
+
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> MP </span>
+                                <span class="sidebar-normal"> My Profile </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-mini"> EP </span>
+                                <span class="sidebar-normal"> Edit Profile </span>
+                            </a>
+                        </li>
+                        @if (Session["UserID"] != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/Admin/Logout">
+                                    <span class="sidebar-mini"> L </span>
+                                    <span class="sidebar-normal"> Logout </span>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Dashboard","Admin")">
+                    <i class="material-icons">equalizer</i>
+                    <p> Dashboard </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("user","Admin")">
+                    <i class="material-icons">group</i>
+                    <p> Duyệt Tài Khoản</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("blockuser","Admin")">
+                    <i class="material-icons">group</i>
+                    <p> Khóa Tài Khoản</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("course","Admin")">
+                    <i class="material-icons">import_contacts</i>
+                    <p> Quản Lý Buổi Học</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("schedule","Admin")">
+                    <i class="material-icons">import_contacts</i>
+                    <p> Quản Lý Lịch Biểu</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("contact","Admin")">
+                    <i class="material-icons">chat</i>
+                    <p> Quản lý Liên Hệ</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

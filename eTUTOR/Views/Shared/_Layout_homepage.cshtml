@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - eTUITOR</title>
+    @Styles.Render("~/Content/css")
+    @if (IsSectionDefined("css"))
+    {
+        @RenderSection("css", required: false)
+    }
+
+    <link rel="stylesheet" href="~/Content/build/css/page/home.css">
+    <link href="~/Content/vendor/slider/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/slider/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/slider/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+
+    
+</head>
+
+<body>
+    @Html.Partial("~/Views/Shared/Common/_Header.cshtml")
+    <div class="main-content">
+        @RenderBody()
+        <!-- footer -->
+        @Html.Partial("~/Views/Shared/Common/_Footer.cshtml")
+        <!-- /footer -->
+    </div>
+    @Scripts.Render("~/Content/js")
+    <script src="~/Content/vendor/jquery/jquery-plugin-collection.js"></script>
+    <script type="text/javascript" src="~/Content/build/js/page/home.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+    @if (IsSectionDefined("scripts"))
+    {
+        @RenderSection("scripts", required: false)
+    }
+</body>
+</html>

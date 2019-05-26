@@ -1,0 +1,107 @@
+﻿.containerr {
+    height: 700px;
+    overflow: auto;
+}
+
+#left {
+    width: 350px;
+    padding: 1em;
+    float: left;
+    background-color: white;
+    height: 550px;
+    margin-top: 5%;
+    margin-left: 5%; 
+    border-radius: 5%;
+}
+.navbar{
+    height:80px;
+}
+#right {
+    width: 720px;
+    float: right;
+    padding: 1em;
+    height: 550px;
+    margin-top: 2%;
+    margin-right: 10%;
+    background-color: white;
+    border-radius: 4%;
+}
+/* profile*/
+.avatar {
+    display: block;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 5%;
+}
+.titleStudent {
+    border: 2px solid pink;
+    border-radius: 10px;
+    width:100%;
+}
+.namepro {
+    text-align: center;
+    padding-top: 1em;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.card{
+    width:900px;
+}
+.menupro {
+    text-align: center;
+    text-transform: uppercase;
+    color: #4169E1;
+    width: 350px;
+    height: 30px;
+    max-width: 320px;
+    margin-top: 2px;
+    border: 1px solid #4169E1;
+    border-radius: 5%;
+    padding-right: 10px;
+    font-size: 18px;
+    padding-bottom: 10%;
+    padding-top: 3%;
+}
+
+div a {
+    color: black;
+    text-decoration: none;
+}
+
+.menupro:hover {
+    background-color: #4169E1;
+}
+
+.content {
+    margin: 2em;
+}
+
+table {
+    border: 2px;
+}
+
+    table td.tdr {
+        padding-right: 10px;
+        padding-left: 10px;
+        color: gray;
+    }
+
+    table td.tdl {
+        text-align: right;
+        max-width: 100px;
+        padding-left: 5px;
+    }
+
+.buttonSub {
+    margin: auto;
+}
+
+.tdr input {
+    height: 37px;
+    width: 300px;
+    border-radius: 8px;
+    border-top: 1px;
+    border-left: 0px;
+    margin-top: -4px;
+}

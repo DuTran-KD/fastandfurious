@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "SessionOfStudent";
+    Layout = null;
+}
+@*<h2 style="margin-top:90px;margin-left:35%;margin-bottom:400px; color:crimson">BUỔI HỌC CỦA HỌC SINH</h2>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @*
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://www.bigprotech.vn:7000/ data: gap: ws: wss: www.bigprotech.vn:7000 ;">*@
+    <title>Student</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <base href="/">
+</head>
+<body oncontextmenu="return false" onselect="return false" onselectstart="return false" ondragstart="return false">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="wb">
+                <div class="text-center">WHITE BOARD @Session["UserID"]</div>
+                <div id="container">
+                    <canvas id="whiteBoard" class="mr-5"></canvas>
+                    <div id="status"></div>
+                </div>
+                <div id="stt" data-id="@Session[" UserID"]"></div>
+                <div class="container-cam d-none">
+                    <h3>Hình ảnh</h3>
+                    <div class="mr-5">
+                        <canvas id="streamVideo"></canvas>
+                        <audio id="localAudio" autoplay></audio>
+                        <audio id="remoteAudio" autoplay></audio>
+                        <div class="input-group">
+                            @*<button id="reStream" class="btn btn-success" type="button">Re-open</button>*@
+                            <button id="stopStream" class="btn btn-danger" type="button">Stop</button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="sessinId" value="@Session.SessionID" />
+                <input type="hidden" id="groupName" value="@ViewData[" GroupName"]" />
+            </div>
+        </div><br />
+    </div>
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="~/Scripts/whiteboard.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/peer.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jsmpg.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main_send.js"></script>
+</body>
+</html>

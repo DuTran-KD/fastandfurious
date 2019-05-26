@@ -1,0 +1,1002 @@
+﻿@model IEnumerable<eTUTOR.Models.tutor>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout_homepage.cshtml";
+}
+@section css{
+    <link rel="stylesheet" href="~/Content/build/css/page/home.css">
+    <link href="~/Content/vendor/slider/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/slider/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/slider/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+}
+<div class="main-content">
+    <!-- slider -->
+    <section id="slider">
+        <div class="container-fluid p-0">
+            <!-- Slider Revolution Start -->
+            <div class="rev_slider_wrapper">
+                <div class="rev_slider" data-version="5.0">
+                    <ul>
+                        <!-- SLIDE 1 -->
+                        <li data-index="rs-1" data-transition="slidingoverlayhorizontal" data-slotamount="default"
+                            data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="Content/img/slider/bg3.jpg"
+                            data-rotate="0" data-saveperformance="off" data-title="Slide 1" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Content/img/slider/bg3.jpg" alt="" data-bgposition="center 10%" data-bgfit="cover"
+                                 data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway" id="rs-1-layer-1"
+                                 data-x="['left']" data-hoffset="['30']" data-y="['middle']" data-voffset="['-110']"
+                                 data-fontsize="['100']" data-lineheight="['110']" data-width="none" data-height="none"
+                                 data-whitespace="nowrap" data-transform_idle="o:1;s:500" data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:700;">
+                                GIÁO DỤC
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent border-left-theme-color-2-6px pl-20 pr-20"
+                                 id="rs-1-layer-2" data-x="['left']" data-hoffset="['35']" data-y="['middle']"
+                                 data-voffset="['-25']" data-fontsize="['35']" data-lineheight="['54']" data-width="none"
+                                 data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                Giáo dục cho mọi người
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme text-white" id="rs-1-layer-3" data-x="['left']"
+                                 data-hoffset="['35']" data-y="['middle']" data-voffset="['35']" data-fontsize="['16']"
+                                 data-lineheight="['28']" data-width="none" data-height="none" data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500" data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
+                                Chúng tôi luôn cung cấp dịch vụ tốt nhất cho khách hàng và luôn luôn <br />
+                                cố gắng để đạt được niềm tin và sự hài lòng của khách hàng.
+                            </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption tp-resizeme" id="rs-1-layer-4" data-x="['left']" data-hoffset="['35']"
+                                 data-y="['middle']" data-voffset="['100']" data-width="none" data-height="none"
+                                 data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                                <a class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20"
+                                   href="@Url.Action("register","User")">Đăng kí ngay</a>
+                            </div>
+                        </li>
+
+                        <!-- SLIDE 2 -->
+                        <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default"
+                            data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="Content/img/slider/bg2.jpg"
+                            data-rotate="0" data-saveperformance="off" data-title="Slide 2" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Content/img/slider/bg2.jpg" alt="" data-bgposition="center 40%" data-bgfit="cover"
+                                 data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase  bg-dark-transparent-5 text-white font-raleway border-left-theme-color-2-6px border-right-theme-color-2-6px pl-30 pr-30"
+                                 id="rs-2-layer-1" data-x="['center']" data-hoffset="['0']" data-y="['middle']"
+                                 data-voffset="['-90']" data-fontsize="['28']" data-lineheight="['54']" data-width="none"
+                                 data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:400; border-radius: 30px;">
+                                Nâng cao kiến thức 
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase bg-theme-colored-transparent text-white font-raleway pl-30 pr-30"
+                                 id="rs-2-layer-2" data-x="['center']" data-hoffset="['0']" data-y="['middle']"
+                                 data-voffset="['-20']" data-fontsize="['48']" data-lineheight="['70']" data-width="none"
+                                 data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:700; border-radius: 30px;">
+                                Trường học trực tuyến
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme text-white text-center" id="rs-2-layer-3" data-x="['center']"
+                                 data-hoffset="['0']" data-y="['middle']" data-voffset="['50']" data-fontsize="['16']"
+                                 data-lineheight="['28']" data-width="none" data-height="none" data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500" data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
+                                Chúng tôi hy vọng bạn sẽ có được những kiến thức hữu ích và <br/> đạt được kết quả học tập tốt nhất
+                            </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption tp-resizeme" id="rs-2-layer-4" data-x="['center']" data-hoffset="['0']"
+                                 data-y="['middle']" data-voffset="['115']" data-width="none" data-height="none"
+                                 data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                                <a class="btn btn-default btn-circled btn-transparent pl-20 pr-20"
+                                   href="@Url.Action("register","User")">Đăng ký </a>
+                            </div>
+                        </li>
+
+                        <!-- SLIDE 3 -->
+                        <li data-index="rs-3" data-transition="slidingoverlayhorizontal" data-slotamount="default"
+                            data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="Content/img/slider/bg4.jpg"
+                            data-rotate="0" data-saveperformance="off" data-title="Slide 3" data-description="">
+                            <!-- MAIN IMAGE -->
+                            <img src="~/Content/img/slider/bg4.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
+                                 data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent border-right-theme-color-2-6px pr-20 pl-20"
+                                 id="rs-3-layer-1" data-x="['right']" data-hoffset="['30']" data-y="['middle']"
+                                 data-voffset="['-90']" data-fontsize="['64']" data-lineheight="['72']" data-width="none"
+                                 data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                GIÁO DỤC TỐT NHẤT
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption tp-resizeme text-uppercase bg-dark-transparent-6 text-white font-raleway pl-20 pr-20"
+                                 id="rs-3-layer-2" data-x="['right']" data-hoffset="['35']" data-y="['middle']"
+                                 data-voffset="['-25']" data-fontsize="['32']" data-lineheight="['54']" data-width="none"
+                                 data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;s:500"
+                                 data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;" data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">
+                                VÌ tương lai tốt hơn của bạn
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption tp-resizeme text-white text-right" id="rs-3-layer-3" data-x="['right']"
+                                 data-hoffset="['35']" data-y="['middle']" data-voffset="['30']" data-fontsize="['16']"
+                                 data-lineheight="['28']" data-width="none" data-height="none" data-whitespace="nowrap"
+                                 data-transform_idle="o:1;s:500" data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                                 data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">                                
+                                Chúng tôi mang đến cho bạn chương trình đào tạo chất lượng với mức giá hợp lí thông qua phương pháp giảng dạy <br/>
+                                sinh động và môi trường tương tác cao đảm bảo dịch vụ và đào tạo tốt nhất
+                            </div>
+
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption tp-resizeme" id="rs-3-layer-4" data-x="['right']" data-hoffset="['35']"
+                                 data-y="['middle']" data-voffset="['95']" data-width="none" data-height="none"
+                                 data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                                 data-start="1400" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                                <a class="btn btn-colored btn-lg btn-flat btn-theme-colored btn-theme-colored border-right-theme-color-2-6px pl-20 pr-20"
+                                   href="@Url.Action("register","User")">Đăng ký</a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- end .rev_slider -->
+            </div>
+            <!-- end .rev_slider_wrapper -->
+        </div>
+    </section>
+    <!-- /slider -->
+    <!-- about -->
+    <section class="about" style="background:white">
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">Giới thiệu</h6>
+                        <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">
+                            Giáo dục đi đôi với
+                            công nghệ
+                        </h2>
+                        <h4 class="text-theme-colored">
+                            Cuộc cách mạng có tốc độ phát triển nhanh tác động sâu sắc
+                            đến mọi lĩnh vực đời sống trong đó có giáo dục.
+                        </h4>
+                        <p>
+                            Trong kỷ nguyên toàn cầu hóa, nền giáo dục sẽ thay đổi một cách sâu rộng từ môi trường
+                            giáo dục, vai trò người dạy, tâm thế người học đến phương pháp dạy học còn người học
+                            không còn bị giới hạn trong bốn bức tường nữa mà sự học sẽ diễn ra mọi lúc mọi nơi. Môi
+                            trường giáo dục không còn diễn ra trong phạm vi nhà trường, lớp học mà mở rộng ra phạm
+                            vi toàn cầu. Bên cạnh đó, việc kết nối trong thời đại IT sẽ kéo theo sự phát triển của
+                            các hình thức học online, học trực tuyến, người học có thể học ở bất cứ nơi nào lúc nào
+                            họ muốn.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="video-popup">
+                            <a href="https://www.youtube.com/watch?v=rPpgu0N-QME" data-lightbox-gallery="youtube-video"
+                               title="Video">
+                                <img alt="" src="~/Content/img/aboutus/5.jpg" class="img-responsive img-fullwidth">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /about -->
+    <!-- feauter -->
+    <section id="feauter">
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <a href="#" class="">
+                                <img src="~/Content/img/flaticon-png/small/graduates.png" width="90" alt="">
+                            </a>
+                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Trải nghiệm của bạn</a></h4>
+                            <p class="">Không cần đi lại bất tiện, không tốn quá nhiều thời gian trong việc đi lại. Học tập tại nhà, tiện lợi và thoải mái </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <a href="#" class="">
+                                <img src="~/Content/img/flaticon-png/small/desktop.png" width="90" alt="">
+                            </a>
+                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Học tập trực tuyến</a></h4>
+                            <p class="">Chỉ cần có máy tính và camera mang đến cho bạn môi trường học tập chuyên nghiệp</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <a href="#" class="">
+                                <img src="~/Content/img/flaticon-png/small/library.png" width="90" alt="">
+                            </a>
+                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Làm chủ giáo dục</a></h4>
+                            <p class="">Học tập online thay đổi phương pháp giáo dục truyền thống, công nghệ tiên tiến giải quyết vấn đề học tập</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <a href="#" class="">
+                                <img src="~/Content/img/flaticon-png/small/lecture.png" width="90" alt="">
+                            </a>
+                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Giáo dục toàn diện</a></h4>
+                            <p class="">Camera kết hợp với các thiết bị điện tử mang đến cho học sinh có được môi trường giáo dục tốt nhất</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /feauter -->
+    <!-- teacher -->
+    <section id="teachers" style="background: white">
+        <div class="container">
+            <div class="section-title mb-10">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">DANH SÁCH <span class="text-theme-color-2 font-weight-400">GIA SƯ</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="row multi-row-clearfix">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-md-4 sm-text-center mb-sm-30">
+                            <div class="team maxwidth400">
+                                <div class="thumb"><img class="img-fullwidth" src="~/Content/img/avatar/tutor/@item.avatar" 
+                                        alt="" onerror="this.onerror = null;
+                                        this.src = 'https://viima-app.s3.amazonaws.com/media/public/defaults/user-icon.png'" style="width:250px; height:280px"></div>
+                                <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix" style="width:250px"> 
+                                    <h4 class="name text-theme-color-2 mt-0"> @item.fullname - <small>Teacher</small></h4>
+                                    <p class="mb-20"> @item.experience </p>
+                                    <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                    <a class="btn btn-theme-colored btn-sm pull-right flip" href="@Url.Action("ViewDetailTutor","Tutor")">
+                                        Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                        <div>
+                            <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30 mt-3" style="margin-left: 55%; 
+                                margin-top: 5px; height:45px"
+                               href="@Url.Action("listOfTutors","Tutor")">Xem thêm →</a>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- /teacher -->
+    <!-- count -->
+    <section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="Content/img/slider/bg2.jpg"
+             data-parallax-ratio="0.7">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="2000" data-value="5248" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                        <h5 class="text-white text-uppercase mb-0">HỌC SINH</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                        <h5 class="text-white text-uppercase mb-0">Lớp học</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="2000" data-value="248" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                        <h5 class="text-white text-uppercase mb-0">Giáo viên</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="2000" data-value="5913" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                        <h5 class="text-white text-uppercase mb-0">Tài liệu</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /count -->
+    <!-- whychoose -->
+    <section id="why-choose" class="why-choose-section backgroud-style bg-light">
+        <div class="container pt-0" style="max-width: 1200px;margin: 0 auto;">
+            <div class="section-title mb20 headline text-center ">
+                <span class="subtitle text-uppercase text-dark">LỢI ÍCH HỌC ONLINE</span>
+                <h2 class="text-dark">Lí do <span style="color:#F2184F">Tại sao chọn eTuitor ?</span></h2>
+            </div>
+            <div class="extra-features-content">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="extra-left">
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text text-left">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i>
+                                    </div>
+                                    <div class="features-text">
+                                        <div class="features-text-title">
+                                            <h3 style="color:#273f5b">Tiết kiệm thời gian</h3>
+                                        </div>
+                                        <div class="features-text-dec">
+                                            <span style="color:#666666">
+                                                Học sinh không cần đến lớp, không lo tới lớp muộn cũng như thiếu
+                                                thời gian ôn bài cũ trước khi vào lớp mà chỉ cần có 1 chiếc máy
+                                                tính có kết nối internet thì bạn đã có thể nghe được bài giảng của
+                                                giảng viên.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class=" flaticon-clipboard-with-pencil"></i>
+                                    </div>
+                                    <div class="features-text pt25">
+                                        <div class="features-text-title">
+                                            <h3 style="color:#273f5b">Sự đầu tư thông minh cho tương lai</h3>
+                                        </div>
+                                        <div class="features-text-dec">
+                                            <span style="color:#666666">
+                                                Etuitor cam kết giúp học sinh lập ra được hoạch định một hành
+                                                trình học vững chắc và mang đến nhiều cơ hội khởi đầu tốt đẹp cho
+                                                tương lai
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class="flaticon-list"></i>
+                                    </div>
+                                    <div class="features-text pt25">
+                                        <div class="features-text-title">
+                                            <h3 style="color:#273f5b">Phương pháp dạy ưu việt</h3>
+                                        </div>
+                                        <div class="features-text-dec">
+                                            <span style="color:#666666">
+                                                Hợp nhất việc học tập với thời công nghệ 4.0 giúp học sinh không
+                                                chỉ phát triển được khả năng học tập tốt mà còn rèn luyện kĩ năng
+                                                sử dụng internet. Sự luyện tập, rèn luyện thường xuyên với gia sư
+                                                có nhiều kinh nghiêm giảng dạy
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+                        </div><!-- /extra-left -->
+                    </div>
+                    <!-- /col-sm-3 -->
+
+                    <div class="col-sm-4">
+                        <div class="extra-pic text-center ">
+                            <img src="~/Content/img/banner/wc-2.png" alt="img">
+                        </div>
+                    </div>
+                    <!-- /col-sm-6 -->
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="extra-right">
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text text-right">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class="flaticon-ruler-and-pencil"></i>
+                                    </div>
+                                    <div class="features-text pt25">
+                                        <div class="features-text-title text-right pb10">
+                                            <h3 style="color:#273f5b">Tương tác và hợp tác</h3>
+                                        </div>
+                                        <div class="features-text-dec text-right">
+                                            <span style="color:#666666">
+                                                Học trực tuyến có thể giao lưu và tương tác trực tiếp với giảng
+                                                viên trong lúc học. Bạn có thể trao đổi, thảo luận và làm bài tập
+                                                nâng cao giúp cải thiện học tập. "Vừa học vừa chơi" hiệu quả bất
+                                                ngờ và mang lại hài lòng người học
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text text-right">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class="flaticon-clipboards"></i>
+                                    </div>
+                                    <div class="features-text pt25">
+                                        <div class="features-text-title text-right pb10">
+                                            <h3 style="color:#273f5b">Hiệu quả tối đa</h3>
+                                        </div>
+                                        <div class="features-text-dec text-right">
+                                            <span style="color:#666666">
+                                                Học tập trực tuyến giúp học sinh không chỉ giải quyết vấn đề chi
+                                                phí mà còn đáp ứng đúng nhu cầu học tập của mình. Lộ trình học tập
+                                                được giảng viên tự tay thiết kế, chủ động linh hoạt và cam kết tiến
+                                                bộ sau 5 buổi học đầu tiên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+
+                            <div class="extra-left-content ">
+                                <div class="extra-icon-text text-right">
+                                    <div class="features-icon gradient-bg text-center">
+                                        <i class="flaticon-pie-chart"></i>
+                                    </div>
+                                    <div class="features-text pt25">
+                                        <div class="features-text-title text-right pb10">
+                                            <h3 style="color:#273f5b">Mô hình phát triển toàn diện</h3>
+                                        </div>
+                                        <div class="features-text-dec text-right">
+                                            <span style="color:#666666"> 
+                                                Dịch vụ học trực tuyến dựa trên công nghệ là internet nên việc
+                                                tiếp cận rất dễ dàng. Bạn có thể học ở bất cứ nơi đâu bạn thấy
+                                                thoải mái
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // extra-left-content -->
+                        </div><!-- /extra-left -->
+                    </div>
+                    <!-- /col-sm-3 -->
+                </div><!-- /row -->
+            </div>
+        </div>
+    </section>
+    <!-- whychoose -->
+    <!-- happystudent -->
+    <section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="Content/img/slider/bg2.jpg">
+        <div class="container pb-50">
+            <div class="section-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="font-weight-300 m-0 text-gray-lightgray">Học sinh đánh giá</h5>
+                        <h2 class="mt-0 mb-0 text-uppercase line-bottom text-white font-28">Phản hồi<span class="font-30 text-theme-color-2">...</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <div class="owl-carousel-2col boxed" data-dots="true">
+                        <div class="item">
+                            <div class="testimonial pt-10">
+                                <div class="thumb pull-left mb-0 mr-0 pr-20">
+                                    <img width="75" class="img-circle" alt="" src="~/Content/img/testimonials/1.jpg">
+                                </div>
+                                <div class="ml-100 ">
+                                    <h4 class="text-white mt-0">
+                                        Sau khi học tập ở eTuitor, em cảm thấy bản thân
+                                        tiến bộ rõ rệt, đặc biệt là môn Toán. Cảm ơn thầy Tuấn và trung tâm eTuitor
+                                        đã tạo điều kiện tốt cho em học tập
+                                    </h4>
+                                    <p class="author mt-20">
+                                        - <span class="text-theme-color-2">Nguyễn Phương Nhi,</span>
+                                        <small><em class="text-gray-lightgray">Lớp 5, TH. Lý Tự Trọng</em></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial pt-10">
+                                <div class="thumb pull-left mb-0 mr-0 pr-20">
+                                    <img width="75" class="img-circle" alt="" src="~/Content/img/testimonials/2.jpg">
+                                </div>
+                                <div class="ml-100 ">
+                                    <h4 class="text-white mt-0">
+                                        Trước kia, em rất yếu môn Vật Lý và đã đi học rất
+                                        nhiều nơi nhưng vẫn không cải thiện được. Em đăng kí được lớp học của cô
+                                        Châu. Cô dạy rất hay và hiện tại em định thi học sinh giỏi môn Vậy lý
+                                    </h4>
+                                    <p class="author mt-20">
+                                        - <span class="text-theme-color-2">Lê Nam Kiệt,</span>
+                                        <small><em class="text-gray-lightgray">Lớp 7, THCS. Lê Văn Tám</em></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial pt-10">
+                                <div class="thumb pull-left mb-0 mr-0 pr-20">
+                                    <img width="75" class="img-circle" alt="" src="~/Content/img/testimonials/3.jpg">
+                                </div>
+                                <div class="ml-100 ">
+                                    <h4 class="text-white mt-0">
+                                        Do cha mẹ bận không có thời gian đưa đón em đi học,
+                                        nên em đã lựa chọn học eTuitor. Không chỉ tiết kiệm thời gian đi lại mà
+                                        thầy cô ở đây dạy rất hay và chăm lo cho học sinh
+                                    </h4>
+                                    <p class="author mt-20">
+                                        - <span class="text-theme-color-2">Nguyễn Mai, </span>
+                                        <small><em class="text-gray-lightgray">Lớp 9, THCS Nguyễn Thượng Hiền</em></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial pt-10">
+                                <div class="thumb pull-left mb-0 mr-0 pr-20">
+                                    <img width="75" class="img-circle" alt="" src="~/Content/img/testimonials/2.jpg">
+                                </div>
+                                <div class="ml-100 ">
+                                    <h4 class="text-white mt-0">
+                                        Cảm ơn trung tâm eTuitor và thầy cô đã mang đến cho
+                                        em nhiều kiến thức bổ ích và phát triển bản thân toàn diện
+                                    </h4>
+                                    <p class="author mt-20">
+                                        - <span class="text-theme-color-2">Catherine Grace,</span>
+                                        <small><em class="text-gray-lightgray">CEO apple.inc</em></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- happystudent -->
+    <section class="crumina-module crumina-module-slider pt100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb30">
+                    <div class="crumina-module crumina-heading">
+                        <h6 class="heading-sup-title">Đăng ký</h6>
+                        <h2 class="heading-title">Đăng ký học online</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="swiper-container navigation-bottom" data-effect="fade">
+                        <div class="slider-slides">
+
+                        </div>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="col-lg-4 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <div class="slider-faqs-thumb">
+                                        <img class="utouch-icon" src="~/Content/img/svg-icons/dial.svg" alt="image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-300">
+                                    <h5 class="slider-faqs-title">Đăng kí/Đăng nhập tài khoản</h5>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <p>
+                                                Người dùng truy cập vào hệ thống website EtuiTor,
+                                            </p>
+                                            <p>Nhấn chọn đăng kí tài khoản (nếu chưa có) và đăng nhập vào hệ thống</p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <p>Có 3 lựa chọn khi đăng kí tài khoản</p>
+                                            <ul class="list list--standard">
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Học sinh</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Gia sư</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Phụ huynh</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="col-lg-4 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <div class="slider-faqs-thumb">
+                                        <img class="utouch-icon" src="~/Content/img/svg-icons/fingerprint.svg" alt="image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-300">
+                                    <h5 class="slider-faqs-title">Kênh người dùng</h5>
+                                    <p>
+                                       Tương ứng với từng người dùng thì hệ thống sẽ hiển thị kênh người dùng tương ứng với kênh sử dụng. Người dùng có thể thao tác 
+                                        chức năng bên trong tương ứng loại người dùng
+                                    </p>
+
+                                    @*<div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="list list--standard">
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Gectores legere me lius quod</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Mirum est notare quam</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Zril delenit augue duis</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <ul class="list list--standard">
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Mirum est notare quam</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Zril delenit augue duis</a>
+                                                </li>
+                                                <li>
+                                                    <svg class="utouch-icon utouch-icon-correct-symbol-1">
+                                                        <use xlink:href="#utouch-icon-correct-symbol-1"></use>
+                                                    </svg>
+                                                    <a href="#">Gectores legere me lius quod</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="col-lg-4 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <div class="slider-faqs-thumb">
+                                        <img class="utouch-icon" src="~/Content/img/svg-icons/devices.svg" alt="image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <h5 class="slider-faqs-title">Kênh học sinh</h5>
+                                    <p class="text-dark">Học sinh khi đăng nhập vào hệ thống hiển thị danh sách buổi học và sẽ tương tác với gia sư qua whiteboard. 
+                                    Ngoài ra, học sinh cần trang bị cho bản thân camera để việc học trở nên hiệu quả hơn</p>
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="crumina-module crumina-info-box info-box--standard">
+                                                @*<div class="info-box-image display-flex">
+                                                    <svg class="utouch-icon utouch-icon-checked">
+                                                        <use xlink:href="#utouch-icon-checked"></use>
+                                                    </svg>
+                                                    <h6 class="info-box-title">Dách sách buổi học</h6>
+                                                </div>
+                                                <p class="info-box-text">
+                                                    Wisi enim ad minim veniam, quis nostrud
+                                                    exerci tation qui
+                                                    nunc nobis videntur parum clari.
+                                                </p>*@
+                                                <img src="~/Content/img/homeStep/student.jpg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            @*<div class="crumina-module crumina-info-box info-box--standard">
+                                                <div class="info-box-image display-flex">
+                                                    <svg class="utouch-icon utouch-icon-checked">
+                                                        <use xlink:href="#utouch-icon-checked"></use>
+                                                    </svg>
+                                                    <h6 class="info-box-title">Lịch sử học tập</h6>
+                                                </div>
+                                                <p class="info-box-text">
+                                                    Sit amet, consectetuer adipiscing elit,
+                                                    sed diam nonummy nibh euismod tincidunt.
+                                                </p>
+                                            </div>*@
+                                            @*<img src="~/Content/img/homeStep/studenta.jpg" />*@
+                                            <img src="~/Content/img/homeStep/camera.jpg" />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="crumina-module crumina-info-box info-box--standard">
+                                                <div class="info-box-image display-flex">
+                                                    <svg class="utouch-icon utouch-icon-checked">
+                                                        <use xlink:href="#utouch-icon-checked"></use>
+                                                    </svg>
+                                                    @*<h6 class="info-box-title">Lịch sử học tập</h6>*@
+                                                </div>
+                                                <p class="info-box-text">
+                                                    <img src="~/Content/img/chung_chi/whiteboard.jpg" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="col-lg-4 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <div class="slider-faqs-thumb">
+                                        <img class="utouch-icon" src="~/Content/img/svg-icons/payment-method.svg" alt="image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-300">
+                                    <h5 class="slider-faqs-title">Kênh gia sư</h5>
+                                    <p class="weight-bold">
+                                      Khi đến giờ học gia sư sẽ mở whiteboard lên và học sinh có thể vào lớp học.
+                                        Gia sư sẽ thấy được hình ảnh của học sinh và tương tác với nhau thông qua whiteboard.
+                                    </p>
+                                    @*<p>
+                                        Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium
+                                        lectorum. Mirum
+                                        est notare quam littera gothica, quam nunc putamus parum claram,
+                                        anteposuerit litterarum
+                                        formas humanitatis. Gest etiam processus dynamicus, qui sequitur mutationem
+                                        consuetudium lectorum.
+                                    </p>*@
+                                        
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <img src="~/Content/img/homeStep/tutor.jpg" width="80%" height="80%" />
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <img src="~/Content/img/homeStep/tutora.gif" width="80%" height="80%"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="col-lg-4 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-100">
+                                    <div class="slider-faqs-thumb">
+                                        <img class="utouch-icon" src="~/Content/img/svg-icons/chat1.svg" alt="image">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-12 col-sm-12" style="display:inline-block"
+                                     data-swiper-parallax="-300">
+                                    <h5 class="slider-faqs-title">Kênh Phụ huynh</h5>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <p style="text-align:justify">
+                                                Khi học sinh đang học trực tuyến với gia sư thì phụ huynh có thể truy cập vào website để
+                                                xem học sinh đang học và hệ thống sẽ lưu thông tin về các buổi học mà phụ huynh có con học ở ETuitor
+                                                giúp phụ huynh có thể dễ dàng theo dõi tình hình học tập của học sinh
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                              <img src="~/Content/img/homeStep/parent.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+@section scripts{
+    <script type="text/javascript" src="~/Content/build/js/page/home.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendor/slider/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            $(".rev_slider").revolution({
+                sliderType: "standard",
+                sliderLayout: "auto",
+                dottedOverlay: "none",
+                delay: 5000,
+                navigation: {
+                    keyboardNavigation: "off",
+                    keyboard_direction: "horizontal",
+                    mouseScrollNavigation: "off",
+                    onHoverStop: "off",
+                    touch: {
+                        touchenabled: "on",
+                        swipe_threshold: 75,
+                        swipe_min_touches: 1,
+                        swipe_direction: "horizontal",
+                        drag_block_vertical: false
+                    },
+                    arrows: {
+                        style: "zeus",
+                        enable: true,
+                        hide_onmobile: true,
+                        hide_under: 600,
+                        hide_onleave: true,
+                        hide_delay: 200,
+                        hide_delay_mobile: 1200,
+                        tmp: '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
+                        left: {
+                            h_align: "left",
+                            v_align: "center",
+                            h_offset: 30,
+                            v_offset: 0
+                        },
+                        right: {
+                            h_align: "right",
+                            v_align: "center",
+                            h_offset: 30,
+                            v_offset: 0
+                        }
+                    },
+                    bullets: {
+                        enable: true,
+                        hide_onmobile: true,
+                        hide_under: 600,
+                        style: "metis",
+                        hide_onleave: true,
+                        hide_delay: 200,
+                        hide_delay_mobile: 1200,
+                        direction: "horizontal",
+                        h_align: "center",
+                        v_align: "bottom",
+                        h_offset: 0,
+                        v_offset: 30,
+                        space: 5,
+                        tmp: '<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">Slider</span>'
+                    }
+                },
+                responsiveLevels: [1240, 1024, 778],
+                visibilityLevels: [1240, 1024, 778],
+                gridwidth: [1170, 1024, 778, 480],
+                gridheight: [650, 768, 960, 720],
+                lazyType: "none",
+                parallax: {
+                    origo: "slidercenter",
+                    speed: 1000,
+                    levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 100, 55],
+                    type: "scroll"
+                },
+                shadow: 0,
+                spinner: "off",
+                stopLoop: "on",
+                stopAfterLoops: 0,
+                stopAtSlide: -1,
+                shuffle: "off",
+                autoHeight: "off",
+                fullScreenAutoWidth: "off",
+                fullScreenAlignForce: "off",
+                fullScreenOffsetContainer: "",
+                fullScreenOffset: "0",
+                hideThumbsOnMobile: "off",
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                debugMode: false,
+                fallbacks: {
+                    simplifyAll: "off",
+                    nextSlideOnWindowFocus: "off",
+                    disableFocusListener: false,
+                }
+            });
+            $('.panel').on("click", function () {
+                $(this).find("[data-toggle='collapse']  ").toggleClass("active");
+            })
+            $(window).bind("scroll", function () {
+                var o = $(".menu").height();
+                $(window).scrollTop() > o ? $("nav").addClass("nav-fixed-top") : $("nav").removeClass(
+                    "nav-fixed-top");
+            })
+            var swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: '.slider-slides',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + ' slides-item" style="width:60px;height:60px;margin:0 40px 0 0">' + (index + 1) + '</span>';
+                    },
+                },
+            });
+        });
+    </script>
+}

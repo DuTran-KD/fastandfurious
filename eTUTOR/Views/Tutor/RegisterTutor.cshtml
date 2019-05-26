@@ -1,0 +1,246 @@
+﻿@using eTUTOR.Models
+@model eTUTOR.Models.tutor
+
+@{
+    ViewBag.Title = "RegisterTutor";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    eTUITOREntities db = new eTUITOREntities();
+    var sch = db.schedules.ToList().Where(x => x.tutor_id == Model.tutor_id && x.status == 1);
+    var sj = db.subjects.ToList().Where(x => x.tutor_id == Model.tutor_id);
+
+}
+@section css{
+    <link type="text/css" href="~/Content/vendor/bootstrap/css/opensans-font.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" href="~/Content/vendor/font-awesome/fonts/material-design-iconic-font.min.css" rel="stylesheet" />
+    <!-- datepicker -->
+    <link href="~/Content/vendor/bootstrap/css/jquery-ui.min.css" rel="stylesheet" />
+    <!-- Main Style Css -->
+    <link href="~/Content/vendor/bootstrap/css/style.css" rel="stylesheet" />
+}
+
+<div class="main-content" style="margin-top: 100px" id="mainContent">
+    <div class="container">
+
+
+        <!-- <div class="wizard-heading pt-1 pb-2">Đăng kí gia sư</div> -->
+        <form id="regForm" method="post" action="/Tutor/ConfirmScheduleTutor" style="margin-top:2%">
+            @if (Session["UserID"] == null)
+            {
+                <div style="text-align:center">
+                    <span style="color:red;font-size:32px;text-transform:uppercase">*Vui lòng đăng nhập để thực hiện đăng ký</span><br />
+                </div>
+            }
+            <br /><br />
+            <div style="text-align:">
+                <div>
+                    <span style="color:brown;font-size:18px;text-transform:uppercase">@Model.fullname (Lịch biểu dạy kèm) </span><br />
+                    ID GS:  <input type="text" name="idgiasu" value="@Model.tutor_id" style="border:none;width:20px;text-align:center" />
+                    <input type="text" id="tengiasu" value="@Model.fullname" hidden />
+                </div>
+                <div style="text-align:">
+
+                </div>
+                <br /><br /><br />
+            </div>
+            <table class="table">
+                @if (sj.Count() > 0)
+                {
+                    <lable>Chọn môn học</lable>
+                    <br />
+
+                    <br />
+
+                    <select class="form-control" name="idmonhoc" id="idmonhoc">
+                        @foreach (var item in sj)
+                        {
+                            <option value="@item.subject_id">@item.subject_name</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <div class="alert alert-warning" id="countSchedule">
+                        <strong>Warning!</strong> Gia sư @Model.fullname chưa cập nhật môn dạy kèm.
+                    </div>
+                }
+                <br />
+                @if (sch.Count() > 0)
+                {
+                    <thead>
+
+                        <tr>
+                            <th></th>
+                            <th>Thứ</th>
+                            <th>Thời gian học</th>
+                            <th>Số buổi</th>
+                        </tr>
+                    </thead>
+
+                    foreach (var item in sch)
+                    {
+                        <tr id="listschedulee">
+                            <th class="checkbox-group required"><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" /></th>
+                            <th scope="row" id="day-@item.schedule_id">@item.day_otw</th>
+                            <th id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</th>
+                            <th>
+                                <input type="number" id="soBuoi" name="soBuoi" max="99" min="5" value="10" class="form-control" style="width:100px" />
+                            </th>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning" id="countSchedule">
+                        <strong>Warning!</strong> Gia sư @Model.fullname chưa cập nhật lịch dạy.
+                    </div>
+                }
+            </table>
+            @if (Session["UserID"] != null)
+            {
+
+                <div style="text-align:center">
+                    <button type="button" id="verify" class="btn btn-primary p-2" data-toggle="modal" data-target="#myModal"
+                            style="">
+                        Xác nhận lại đăng ký
+                    </button>
+                </div>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title" style="text-align:center;color:darkgreen">LỊCH BIỂU ĐĂNG KÝ</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+
+                                <table class="table">
+                                    <tr>
+                                        <td class="tdl">
+                                            Gia sư
+                                        </td>
+                                        <td class="tdr">
+                                            <input type="text" id="fullname" value="@Model.fullname" style="border:none">
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="tdl">
+                                            Môn học
+                                        </td>
+                                        <td class="tdr">
+                                            <input type="text" id="monhoc" value="" style="border:none">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdl" style="padding-top: 19px;">
+                                            Lịch học
+                                        </td>
+
+                                    </tr>
+                                    <tr id="addSchedule"></tr>
+
+
+                                </table>
+                            </div>
+
+                            <div class="modal-footer" >
+                                <div style="text-align:center">
+                                    <input class="btn btn-success" type="submit" id="submit-form" value="Đăng Kí"/>
+                                </div>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </form>
+
+    </div>
+</div>
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script src="~/Content/vendor/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/jquery-ui.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/jquery.steps.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/main.js"></script>
+    <script type="text/javascript">
+        var sjj = @sj.Count();
+        var sche = @sch.Count();
+        if (sjj <= 0 || sche <= 0) {
+            $('#submit-form').attr('disabled', 'disabled');
+            $('#verify').attr('hidden','hidden');
+
+        } else {
+            $('#submit-form').removeAttr('disabled');
+            $('#verify').removeAttr('hidden');
+        }
+        // When the modal opens
+        $('#verify').click(function () {
+
+            // Đẩy dữ liệu vô form
+            var tengs = document.getElementById('tengiasu').value;
+            var idmonhoc = document.getElementById('idmonhoc').value;
+            var tenmonhoc = $("#idmonhoc :selected").text();
+            var schedule = document.getElementsByName('idschedule');
+            var soBuoi = document.getElementById('soBuoi');
+
+            var vals = "";
+            $('#fullname').val(tengs);
+            $('#monhoc').val(tenmonhoc);
+            $('#idmonhoc').val(idmonhoc);
+            //var checkedValue = document.querySelector('.idschedule:checked').value;
+            //$('#lichhoc-1').val(checkedValue);
+            $('#addSchedule').empty();
+            for (var i = 0, n = schedule.length; i < n; i++) {
+                if (schedule[i].checked) {
+                    vals += "," + schedule[i].value;
+                    var para = document.createElement("input");
+                    para.name = 'idschedule';
+                    para.type = 'checkbox';
+                    para.value = schedule[i].value;
+                    para.hidden = 'hidden';
+                    var dayotw = document.createElement("td");
+                    var dotw = $('#listschedulee #day-' + schedule[i].value).text();
+                    var startend = $('#listschedulee #start-end-' + schedule[i].value).text();
+                    var rs = dotw + ': ' + startend;
+                    dayotw.append(rs);
+                    dayotw.className = 'tdl';
+                    document.getElementById("addSchedule").appendChild(dayotw);
+                    document.getElementById("addSchedule").appendChild(para);
+                }
+            }
+
+            var legnht = $('input[name="idschedule"]:checked').length;
+            if (legnht < 1 ) {
+                $('#submit-form').attr('disabled', 'disabled');
+
+                alert("Vui lòng chọn thời gian học");
+            } else
+            {
+                $('#submit-form').removeAttr('disabled');
+            };
+            
+        
+              
+        });
+        
+    </script>
+}
+

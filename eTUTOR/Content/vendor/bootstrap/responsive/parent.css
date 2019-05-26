@@ -1,0 +1,31 @@
+﻿@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+    .titleParent {
+        width: 100%;
+    }
+    /*.card{
+        width:100px;
+    }*/
+    #accord2 {
+        width: 100%;
+    }
+
+    .card-header {
+        width: 100%;
+    }
+}
+
+@media screen and (min-device-width: 1000px) and (max-device-width: 1500px) {
+    .titleParent {
+        width: 125%;
+    }
+    /*.card{
+        width:100px;
+    }*/
+    #accord2 {
+        width: 125%;
+    }
+
+    .card-header {
+        width: 125%;
+    }
+}

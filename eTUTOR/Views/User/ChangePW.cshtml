@@ -1,0 +1,183 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Style all input fields */
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+    }
+
+        /* Style the submit button */
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    /* Style the container for inputs */
+    .container {
+        background-color: #f1f1f1;
+        padding: 20px;
+    }
+
+    /* The message box is shown when the user clicks on the password field */
+    #message {
+        display: none;
+        background: #f1f1f1;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "✔";
+        }
+
+    /* Add a red text color and an "x" when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+</style>
+<div class='thetop'></div>
+    <div class="container">
+        <form method="post" action="~/User/ChangePW" style="margin-bottom:40%;margin-top:10%" onsubmit="return validation()">
+            <table class="table">
+                <tr>
+                    <td class="tdl" style="text-align:right">
+                        Mật khẩu hiện tại
+                    </td>
+                    <td class="tdr">
+                        <input type="password" name="currentPW" class="form-control" id="currentPW">
+                        <span class="text-danger" id="passHT1"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl" style="text-align:right">
+                        Mật khẩu mới
+                    </td>
+                    <td class="tdr">
+                        <input type="password" name="newPW" class="form-control" id="newPW">
+                        <span class="text-danger" id="newPW1"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl" style="text-align:right">
+                        Xác nhận mật khẩu mới
+                    </td>
+                    <td class="tdr">
+                        <input type="password" name="cfNewPW" class="form-control" id="cfNewPW">
+                        <span class="text-danger" id="cfNewPW1"></span>
+                        <p id="length" class="invalid" style="display:none">Từ <b>8 - 16</b> kí tự</p>
+                        <p id="capital" class="invalid" style="display:none">Giống mật khẩu trên</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class=""></td>
+                    <td style="text-align:center" class="tdr">
+                        <input type="submit" value="Xác nhận" class="form-control" />
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+
+
+
+    </div>
+<script type="text/javascript">
+    function validation() {
+        var currentPW = document.getElementById('currentPW').value;
+        var newPW = document.getElementById('newPW').value;
+        var cfNewPW = document.getElementById('cfNewPW').value;
+        
+        if (currentPW == "") {
+            document.getElementById('passHTs').innerHTML = " ** Mật khẩu không rỗng";
+            return false;
+        }
+        if (newPW == "") {
+            document.getElementById('newPW1').innerHTML = " ** Mật khẩu mới không rỗng";
+            return false;
+        }   
+        if (newPW.length < 6) {
+            document.getElementById('newPW1').innerHTML = " ** Mật khẩu phải lớn hơn 6 kí tự";
+            return false;
+        }
+        if (cfNewPW == "") {
+            document.getElementById('cfNewPW1').innerHTML = " ** Xác nhận mật khẩu không rỗng";
+            return false;
+        }
+        if (cfNewPW.length < 6) {
+            document.getElementById('cfNewPW1').innerHTML = " ** Mật khẩu phải lớn hơn 6 kí tự";
+            return false;
+        }
+        if (newPW.length != cfNewPW.length) {
+            document.getElementById('cfNewPW1').innerHTML = "** Mật khẩu mới và xác nhận mật khẩu khác nhau";
+            return false;
+        }       
+
+
+    }
+    </script>
+<script>
+    var myInput = document.getElementById("cfNewPW");
+    var pw = document.getElementById("newPW");
+    var length = document.getElementById("length");
+    var capital = document.getElementById("capital");
+    myInput.onfocus = function () {
+        document.getElementById("length").style.display = "block";
+        document.getElementById("capital").style.display = "block";
+    }
+    myInput.onblur = function () {
+        document.getElementById("capital").style.display = "none";
+        document.getElementById("length").style.display = "none";
+    }
+    myInput.onkeyup = function () {
+        // Validate mat khau giong nhau khong
+        if (myInput.value == pw.value) {
+            capital.classList.remove("invalid");
+
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+
+        // Validate do dai
+        if (myInput.value.length >= 8 && myInput.value.length <= 16) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+            
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    }
+</script>

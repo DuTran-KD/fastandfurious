@@ -1,0 +1,129 @@
+﻿<style>
+    .navbar.fix {
+        left: 0;
+        max-width: 100%;
+        overflow: visible;
+        position: fixed !important;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+</style>
+@{ 
+    var userRole = Session["Role"] != null ? Session["Role"].ToString() : "";
+    var InfoHref="";
+    var userId = Session["UserID"] != null ? Session["UserID"].ToString() : "";
+    if (userRole == "tutor")
+    {
+        InfoHref = Url.Action("InfoOfTutor", "Tutor", new { id = userId });
+    }
+    else if(userRole == "parent")
+    {
+        InfoHref = Url.Action("InfoOfParent", "Parent", new { id = userId });
+    }
+    else if (userRole == "student")
+    {
+        InfoHref = Url.Action("InfoOfStudent", "Student", new { id = userId });
+    }
+}
+
+<header class="menu" once="menu">
+    <nav class="navbar navbar-expand-md fix navbar-dropdown align-items-center navbar-dark nav--dark" >
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="#">
+                        <img src="" alt="">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap">
+                    <a class="navbar-caption text-white display-5 " href="@Url.Action("index","Home")">
+                        eTuiTor
+                    </a>
+                </span>
+            </div>
+        </div>
+        <button class="navbar-toggler btn-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse shift" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown nav-right ml-auto">
+                <li class="nav-item  active  p-2">
+                    <a class="nav-link link text-white " href="@Url.Action("index","Home")">
+                        Trang chủ
+                    </a>
+                </li>
+                <li class="nav-item  p-2">
+                    <a class="nav-link link text-white " href="@Url.Action("about","Home")">
+                        Giới thiệu
+                    </a>
+                    </a>
+                </li>
+                <li class="nav-item dropdown  p-2">
+                    <a class="nav-link link  text-white " href="@Url.Action("listOfTutors","Tutor")">
+                        Gia sư
+                    </a>
+
+                </li>
+                <li class="nav-item p-2">
+                    <a class="nav-link link text-white " href="@Url.Action("contact","Home")">
+                        Liên hệ
+                    </a>
+                </li>
+                @if (Session["UserID"] == null)
+                {
+                    <li class="nav-item p-2">
+                        <a href="@Url.Action("register","User")" class="btn register">Đăng kí</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a href="@Url.Action("login","User")" class="btn login ">Đăng nhập</a>
+                    </li>
+                }
+                else
+                {
+
+                    <li class="nav-item dropdown p-2" style="margin-right:50px;">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Session["FullName"]
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-item p-2" href="@InfoHref">Thông tin cá nhân</a>
+                            <a class="nav-item p-2" href="~/User/ChangePW">Đổi mật khẩu</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-item p-2" href="/User/Logout">Đăng xuất</a>
+                        </div>
+                    </li>
+
+
+                }
+                <li class="nav-item p-2">
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var $filter = $('.navbar');
+        var $filterSpacer = $('<div />', {
+            "class": "vnkings-spacer",
+            "height": $filter.outerHeight()
+        });
+        if ($filter.size()) {
+            $(window).scroll(function () {
+                if (!$filter.hasClass('fix') && $(window).scrollTop() > $filter.offset().top) {
+                    $filter.before($filterSpacer);
+                    $filter.addClass("fix");
+                }
+                else if ($filter.hasClass('fix') && $(window).scrollTop() < $filterSpacer.offset().top) {
+                    $filter.removeClass("fix");
+                    $filterSpacer.remove();
+                }
+            });
+        }
+
+    });
+</script>

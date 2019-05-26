@@ -1,0 +1,82 @@
+  
+  .product {
+    /* background-color: black; */
+    background-color: rgb(235, 232, 228);
+    margin-top: -14rem;
+    text-align: center; }
+    .product .product__title {
+      color: white;
+      padding-top: 14rem; }
+    .product .nav_product {
+      width: fit-content;
+      margin: 0 auto; }
+      .product .nav_product .nav-link {
+        background: linear-gradient(#303030, #202020);
+        border: 1px outset #202020;
+        color: #999; }
+      .product .nav_product .active {
+        color: #00adef; }
+    .product .item {
+      position: relative;
+      animation: fadeInUp 2s forwards; }
+      .product .item:hover .overlay p {
+        padding-bottom: 50px; }
+      .product .item .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        bottom: 0;
+        text-align: left; }
+        .product .item .overlay h1 {
+          color: white;
+          font-size: 30px;
+          font-weight: normal; }
+        .product .item .overlay p {
+          color: white;
+          font-size: 15px;
+          font-weight: normal;
+          transition: all 1s; }
+  
+  .cars {
+    background-color: black;
+    position: relative; }
+    .cars .car_owl {
+      width: 90%;
+      margin: 0 auto; }
+    .cars .owl-next span {
+      font-size: 80px;
+      position: absolute;
+      top: 0px;
+      right: -20px; }
+  
+  .btn--black {
+    color: #999;
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px 10px; }
+    .btn--black:hover {
+      color: black;
+      background-color: #00adef;
+      text-decoration: none; }
+  
+  .btn--blue {
+    color: white;
+    background-color: #00adef;
+    border-radius: 40px;
+    padding: 5px 20px;
+    font-size: 20px; }
+    .btn--blue:hover {
+      color: black;
+      background-color: white;
+      text-decoration: none; }
+  
+  .btn--transparent {
+    color: white;
+    background-color: transparent;
+    border-radius: 40px;
+    padding: 5px 20px;
+    font-size: 20px;
+    border: 1px solid white; }
+    .btn--transparent:hover {
+      color: black;
+      background-color: white;
+      text-decoration: none; }

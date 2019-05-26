@@ -1,0 +1,172 @@
+.nav-item a{
+    font-size: 14px;
+}
+.navbar1 {
+    margin-left: 25%;
+}
+section{
+    margin: 0 20%;
+}
+.circle__item{
+    position: relative;
+    font-size: 20px;
+    bottom: 8px;
+}
+.circle__item::before{
+    content: "";
+    height: 1px;
+    width: 60px;
+    border: black 1px solid;
+    border-radius: 5px;
+    position: absolute;
+    left: 0px;
+    top: 50px;
+}
+.section_item1a img{
+    height: 350px;
+    width: 100%;
+}
+.section_item1b{
+    padding: 25px;
+}
+.section_item2a img{
+    margin-top: -31px;
+    margin-left: -30px;
+}
+.section_item2b{
+    height: 320px;
+    width: 103.5%;
+}
+#section3{
+    margin-top: -56px;
+}
+.circle__item1{
+    position: relative;
+    font-size: 20px;
+    bottom: 8px;
+}
+/* ------------------hover--------------- */
+/*.section1b:hover {
+    background-image: url('../../../img/aboutus/3.jpg');
+    height: 100%;
+    width: 90%;
+}*/
+.title:hover{
+    color: blue;
+}
+/*.section2a:hover{
+    background-image: url(../../../img/aboutUs/3.jpg);
+    height: 120%;
+    width: 120%;
+}
+.section3b:hover{
+    background-image: url(../../../img/aboutUs/3.jpg);
+    height: 100%;
+    width: 90%;
+}*/
+
+
+/* --------------------------hover---------------- */
+/* ----------------teacher----------------- */
+.wap_info_teachers .title_teachers h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.wap_info_teachers .member{
+    position: relative;
+}
+.wap_info_teachers .member .member-info{
+    position: relative;
+    padding: 10px;
+}
+.wap_info_teachers .member .member-info img{
+    width: 100%;
+    border-radius: 4px;
+}
+.wap_info_teachers .member .member-info .member-info-intro{
+    position: absolute;
+    width: 70%;
+    background-color:black;
+    color: white;
+    text-align: right;
+    padding: 10px 20px;
+    bottom: 30px;
+    right: 10px;
+}
+.wap_info_teachers .member .member-hover{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    transition: all 0.5s;
+    opacity: 0;
+    border: 20px solid hsla(0, 0%, 0%, 0.1);
+    background-color: hsla(0, 0%, 100%, 0.9);
+}
+.wap_info_teachers .member .member-hover:hover{
+    opacity: 1;
+}
+.wap_info_teachers .member .member-hover:hover .member-hover-intro{
+    opacity: 1;
+    top:40%;
+}
+.wap_info_teachers .member .member-hover:hover .member-hover-link{
+    opacity: 1;
+    bottom:20%;
+}
+.wap_info_teachers .member .member-hover .member-hover-intro{
+    position: absolute;
+    top: 5;
+    width: 100%;
+    padding: 0 20px;
+    transition: all .3s .2s;
+    transform: translateY(-55%);
+    opacity: 0;
+    text-align: center;
+    line-height: 2;
+}
+.wap_info_teachers .member .member-hover .member-hover-intro h4{
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+.wap_info_teachers .member .member-hover .member-hover-intro p{
+    color: darkgray;
+    font-size: 13px;
+}
+.wap_info_teachers .member .member-hover .member-hover-link{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transition: all .3s .2s;
+    transform: translateY(45%);
+    text-align: center;
+    opacity: 0;
+}
+.wap_info_teachers .member .member-hover .member-hover-link i{
+    color: black;
+    padding: 20px;
+}
+.wap_info_teachers .join-box{
+    background-color:whitesmoke;
+    padding: 50px;
+    margin: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+.wap_info_teachers .join-box .join-btn{
+    padding: 16px 90px;
+}
+.wap_info_teachers .join-box .join-btn a{
+    background-color: black;
+    color: white;
+}
+.wap_info_teachers .join-box .join-btn a:hover{
+    background-color: orange;
+}
+
+/* ----------------teacher----------------- */
+

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "SessionOfTutor";
+    Layout = null;
+}
+@*<h2 style="margin-top:90px;margin-left:35%;margin-bottom:400px; color:crimson">BUỔI DẠY CỦA TUTOR</h2>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @*
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://www.bigprotech.vn:7000/ data: gap: ws: wss: www.bigprotech.vn:7000 ;">*@
+    <title>Etutor</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <base href="/">
+</head>
+<body oncontextmenu="return false" onselect="return false" onselectstart="return false" ondragstart="return false">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="wb">
+                    <div class="text-center">WHITE BOARD</div>
+                    <div id="tableWhiteBoard">
+                        <img id="imgline" style="border-color: Gray; border-style: dashed; width: 32px; height: 32px"
+                             src="/images/line_dim.png" onclick="SelectTool('line'); return false;" />
+                        <img id="imgpencil" style="border-color: Gray; border-style: dashed; width: 32px;
+                            height: 32px" src="/images/pencil_dim.png" onclick="SelectTool('pencil'); return false;" />
+                        <img id="imgrect" style="border-color: Gray; border-style: dashed; width: 32px; height: 32px"
+                             src="/images/rect_dim.png" onclick="SelectTool('rect'); return false;" />
+                        <img id="imgtext" style="border-color: Gray; border-style: dashed; width: 32px; height: 32px"
+                             src="/images/text_dim.png" onclick="SelectTool('text'); return false;" />
+                        <img id="imgerase" style="border-color: Gray; border-style: dashed; width: 32px;
+                            height: 32px" src="/images/erase_dim.png" onclick="SelectTool('erase'); return false;" />
+                        <img id="imgSave" style="border: 0; border-style: dashed; width: 32px; height: 32px"
+                             src="/images/save.png" onclick="SaveDrawings(); return false;" />
+                    </div>
+                    <div id="container">
+                        <canvas id="whiteBoard" class="mr-5"></canvas>
+                        <div id="status"></div>
+                    </div>
+                    <div id="container-cam"></div>
+                    <div id="container-audio"></div>
+                    <input type="hidden" id="sessinId" value="@Session.SessionID" />
+                    <input type="hidden" id="groupName" value="@ViewData[" GroupName"]" />
+                </div>
+            </div>
+        </div><br />
+    </div>
+
+    <!-- Latest compiled JavaScript -->
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="~/Scripts/whiteboard.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/peer.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jsmpg.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main_receive.js"></script>
+</body>
+</html>

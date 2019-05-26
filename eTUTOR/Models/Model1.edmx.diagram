@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1616701467774a978870b96f7ea16d4e" Name="Diagram1">
+        <EntityTypeShape EntityType="capstone2019Model.about" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.admin" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.comment" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.common" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.contact_admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.contact_tutor" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.contact" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.history_lessons" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.parent" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.schedule" Width="1.5" PointX="8.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.session" Width="1.5" PointX="13.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.status" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.student" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.subject" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.submenu" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.sysdiagram" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.tutor" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.typeUser" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="capstone2019Model.notice" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="capstone2019Model.FK_comment_student" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_comment_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_submenu_common" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_contatc_tutor_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_history_lessons_student" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_history_lessons_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_parent_status" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_parent_student" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_schedule_status" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_schedule_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_sessions_schedules1" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK__sessions__subjec__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_session_status" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_session_status_admin" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_session_status_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_session_student" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_session_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK__students__status__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_tutor_status" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK_tutor_status_register" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK__subject__tutor_i__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="capstone2019Model.FK__Users__us_type__208CD6FA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

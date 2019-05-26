@@ -1,0 +1,73 @@
+﻿
+@{
+    /**/
+    var dangky = (string[])(TempData["arrayDangKy"]);
+    ViewBag.Title = "KetQuaThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div id="onTop" style="background-color:white; height:200px">
+        <form action="~/Admin/Admin/KetQuaThongKe" method="get" class="" style="padding:30px" name="thongke">
+            <div class="pull-left" style="width:400px">
+                <label style="color:indianred">Chọn kiểu thống kê</label>
+                <select name="kieuTK" class="form-control">
+                    <option value="slDangKy"> Thống kê số lượng người đăng ký</option>
+                    <option value="slDangKyGiaSu"> Thống kê số lượng đăng ký gia sư</option>
+                    <option value="slCacBuoiHocDienRa"> Số lượng các buổi học đã diễn ra</option>
+                </select>
+            </div>
+            <div class="pull-right" style="width:400px;">
+                <label style="color:indianred">Ngày bắt đầu</label>
+                <input type="date" name="dateStart" value="" class="form-control" />
+
+                <label style="color:indianred">Ngày kết thúc</label>
+                <input type="date" name="dateEnd" value="" class="form-control" />
+                <input id="submitTK" type="submit" value="Xem" class="pull-left btn-outline-success form-control" style="color:black" accesskey="h" />
+            </div>
+
+        </form>
+    </div>
+    <div id="chartContainer"></div>
+
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                animationEnabled: true,
+                title: {
+                    text: "Simple Column Chart in ASP.NET MVC"
+                },
+                subtitles: [
+                    { text: "Try Resizing the Browser" }
+                ],
+                data: [
+                    {
+                        type: "column", //change type to bar, line, area, pie, etc
+                        dataPoints: [
+                            { x: 10, y: 71 },
+                            { x: 20, y: 55 },
+                            { x: 30, y: 50 },
+                            { x: 40, y: 65 },
+                            { x: 50, y: 95 },
+                            { x: 60, y: 68 },
+                            { x: 70, y: 28 },
+                            { x: 80, y: 34 },
+                            { x: 90, y: 14 }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        };
+    </script>
+
+
+</div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js">
+
+
+

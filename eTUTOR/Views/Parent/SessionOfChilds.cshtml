@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "SessionOfTutor";
+    Layout = null;
+}
+@*<h2 style="margin-top:90px;margin-left:35%;margin-bottom:400px; color:crimson">BUỔI DẠY CỦA TUTOR</h2>*@
+<!DOCTYPE html>
+<html lang="en">
+<head oncontextmenu="return false" onselect="return false" onselectstart="return false" ondragstart="return false">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @*<meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://www.bigprotech.vn:7000/ data: gap: ws: wss: www.bigprotech.vn:7000 ;">*@
+    <title>Parent</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <base href="/">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Parent of @Session["UserID"]</h2>
+            <div id="stt" data-id="@Session["UserID"]"></div>
+            <div class="col-sm-12">
+                <div class="wb">
+                    <div id="container-cam">
+                        <canvas id="streamVideo"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div><br />
+    </div>
+    <!-- Latest compiled JavaScript -->
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jsmpg.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/parent_receive.js"></script>
+</body>
+</html>

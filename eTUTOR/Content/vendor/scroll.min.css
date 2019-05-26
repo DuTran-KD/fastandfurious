@@ -1,0 +1,39 @@
+
+  
+  .scrolltop {
+      display:none;
+      width:100%;
+      margin:0 auto;
+      position:fixed;
+      bottom:20px;
+      right:10px;	
+  }
+  .scroll {
+      position:absolute;
+      right:20px;
+      bottom:20px;
+     
+      background:rgb(24,201,103);
+      padding:17px;
+      color:white;
+      text-align: center;
+      margin: 0 0 0 0;
+      cursor:pointer;
+      transition: 0.5s;
+      -moz-transition: 0.5s;
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s; 		
+  }
+ 
+  .scroll:hover .fa {
+      padding-top:-10px;
+  }
+  .scroll .fa {
+      font-size:30px;
+      margin-top:-5px;
+      margin-left:1px;
+      transition: 0.5s;
+      -moz-transition: 0.5s;
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s; 	
+  }

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<eTUTOR.Models.session>
+
+@{
+    ViewBag.Title = "listRegistCourse";
+}
+
+<div class="container" style="margin-top:10%;margin-bottom:10%">
+
+    <table class="table" style="text-align:center">
+        <tr>
+
+            <th>
+                Tên Gia sư
+            </th>
+
+            <th>
+                Lớp
+            </th>
+            <th>
+                Giờ bắt đầu
+            </th>
+            <th>
+                Giờ kết thúc
+            </th>
+            <th>
+                Tổng bài học
+            </th>
+            <th>
+                Thứ
+            </th>
+
+
+            <th>
+                Môn
+            </th>
+            <th>
+                Trạng thái
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tutor.fullname)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.@class)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.start_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.end_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total_sessions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.day_otw)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.subject1.subject_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status1.name)
+                    </td>
+
+
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            
+        }
+
+    </table>
+</div>

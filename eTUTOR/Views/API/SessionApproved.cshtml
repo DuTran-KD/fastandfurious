@@ -1,0 +1,58 @@
+﻿
+@{
+    var sessionapproved = ViewData["sessionapproved"] as List<eTUTOR.Models.session>;
+}
+<table class="table" style="text-align: center;">
+    <tr>
+        <th>
+            Thứ
+        </th>
+        <th>
+            Thời gian học
+        </th>
+
+        <th>
+            Học sinh
+        </th>
+        <th>
+            Số buổi đã học
+        </th>
+        <th>
+            Vào học
+        </th>
+    </tr>
+    @if (!sessionapproved.Any())
+    {
+        <tr>
+            <td colspan="5">Hông có buổi học nào</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var session in sessionapproved)
+        {
+            <tr>
+                <td>
+                    @session.day_otw
+                </td>
+                <td>
+                    @session.start_time - @session.end_time
+                </td>
+
+                <td>
+                    @session.student.fullname
+                </td>
+
+                <td>
+                    @session.total_sessions
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="etutor_sub" data-name="@Session["FullName"]" data-subjectId="@session.tutor_id@session.subject_id@session.day_otw">
+                        <i class="fa fa-video-camera" aria-hidden="true" style="font-size:30px;"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+

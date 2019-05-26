@@ -1,0 +1,880 @@
+﻿@model eTUTOR.Models.parent
+@using eTUTOR.Models;
+@{
+    ViewBag.Title = "InfoOfParent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string s = Session["UserID"].ToString();
+    int id = int.Parse(s);
+    eTUITOREntities db = new eTUITOREntities();
+    var usernameC = db.students.ToList().Where(x => x.parent_id == id);
+    var hisStudent = db.history_lessons.ToList().Where(x => x.student_id == id);
+}
+
+@section css{
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="~/Content/vendor/bootstrap/css/demo.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/avatar.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/css/parent.css" rel="stylesheet" />
+    <link href="~/Content/vendor/bootstrap/responsive/parent.css" rel="stylesheet" />
+    <style>
+        .error {
+            color: red;
+            text-align: left;
+        }
+        .stream {
+            color: #ea1111;
+        }
+
+        .no-drop {
+            cursor: no-drop;
+        }
+    </style>
+}
+
+
+<div class="image-container set-full-height">
+
+    <div class="container row" style="margin-top:3%">
+        <div class="left col-sm-5 col-md-5 col-sm-12">
+            <img src="~/Content/img/avatar/parent/@Html.DisplayFor(model => model.avatar)" class="ml-4 mt-4" onerror="this.onerror = null; this.src='https://viima-app.s3.amazonaws.com/media/public/defaults/user-icon.png'"
+                 alt="avatar" style="border-radius: 20%;margin-top: 0px;  height:250px; width:250px;">
+            <a class="btn btn-primary p-2" data-toggle="modal" data-target="#avatar"
+               style="margin-left: 5%">
+                <img src="/Content/img/edit.png" width="20px" height="20px" alt="EditAvatar" />
+            </a>
+            <div class="modal" id="avatar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="margin-left: 30%">Tải ảnh đại diện lên</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        @using (Html.BeginForm("changeAvatar",
+                        "Parent",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                        {
+
+                            <div class="modal-body">
+                                <span style="color:red" id="feedback"></span>
+                                <input type="file" name="files" id="files" class="form-control" 
+                                       accept=".jpg,.png" onchange="validate_fileupload(this);" /><br><br>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Tải ảnh"  class="btn-outline-success" 
+                                       style="border:5%" onclick="return valid_form();" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <a href="#" style="display: inline-block"></a>
+            <!-- <img src="https://cdn3.iconfinder.com/data/icons/block/32/box_edit-512.png" width="30px" height="30px"></a> -->
+
+            <div class="namepro ml-4" style="text-align: center;">@Html.DisplayFor(model => model.fullname)</div>
+            <table class="table">
+                <tr>
+                    <td class="tdl">
+                        Tên đăng nhập
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.username)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Địa chỉ
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.address)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tdl">
+                        Số điện thoại
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.phone)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl">
+                        Email
+                    </td>
+                    <td class="tdr">
+                        @Html.DisplayFor(model => model.email)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdl"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#myModal"
+                                style="margin-left: 65%">
+                            Chỉnh sửa
+                        </button>
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="margin-left: 30%">Chỉnh sửa Tiểu sử</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <table class="table" id="edit-profile">
+                                            <tr>
+                                                <td class="tdl">
+                                                    Họ và tên
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="fullname" value="@Model.fullname">
+                                                    <div id="fullname-error" class="error"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Tên đăng nhập
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="username" value="@Model.username">
+
+                                                    <div id="username-error" class="error"></div>
+
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Địa chỉ
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="text" id="address" value="@Model.address">
+                                                    <div id="address-error" class="error"></div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="tdl">
+                                                    Số điện thoại
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="number" id="phone" value="@Model.phone">
+                                                    <div id="phone-error" class="error"></div>
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                <td class="tdl">
+                                                    Email
+                                                </td>
+                                                <td class="tdr">
+                                                    <input type="email" id="email" value="@Model.email" disabled>
+                                                    @*<div id="email-error" class="error"></div>
+                                                </td>*@
+                </tr>
+
+
+            </table>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btn-profile-save" onclick="checkinput">Lưu</button>
+        </div>
+
+    </div>
+</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+<div class="right col-sm-7 col-md-7 col-sm-12">
+    <div>
+        <h3 class="p-3 pl-3 titleParent" style="border: 2px solid pink; border-radius: 10px;">KÊNH PHỤ HUYNH</h3>
+        <div id="demo-accordion-collapse" role="tablist">
+
+            <div class="card">
+                <div class="card-header" role="tab" id="accord2" style="border-radius: 10px; background-color:indianred; font-size: 8px; padding-left: 10px; padding-bottom: 15px; padding-top: 0px">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-pane-2" role="button" aria-expanded="false" aria-controls="collapse-pane-2" style="font-size:20px" style="font-size:20px">
+                            Danh sách buổi học
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-pane-2" class="collapse" role="tabpanel" aria-labelledby="accord2"
+                     data-parent="#demo-accordion-collapse">
+                    <div class="card-body">
+
+                        <div class="form-wrapper pb-3">
+                            <select name="" id="select-dotw" class="form-control"
+                                    style="border: none; border: 2px solid black; width: 30%; margin-left: 70%">
+                                <option value="" disabled selected>Chọn thứ cần lọc</option>
+                                <option value="-1">Chọn hết</option>
+                                <option value="2">Thứ 2</option>
+                                <option value="3">Thứ 3</option>
+                                <option value="4">Thứ 4</option>
+                                <option value="5">Thứ 5</option>
+                                <option value="6">Thứ 6</option>
+                                <option value="7">Thứ 7</option>
+                                <option value="8">Chủ nhật</option>
+                            </select>
+                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+
+                        </div>
+
+                        <div id="sessionlist">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" role="tab" id="accord4" style="border-radius: 10px; background-color:indianred; font-size: 8px; padding-left: 10px; padding-bottom: 15px; padding-top: 13px; margin-top:10px">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-pane-4" role="button" aria-expanded="false" aria-controls="collapse-pane-4" style="font-size:20px">
+                            Danh sách buổi đang học
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-pane-4" class="collapse" role="tabpanel" aria-labelledby="accord4"
+                     data-parent="#demo-accordion-collapse">
+                    <div class="card-body row">
+                        <div class="col-6">
+                            <img src="~/Content/img/avatar/1.jpg" style="width: 270px; height:280px" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img src="~/Content/img/avatar/1.jpg" style="width: 270px; height:280px" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" role="tab" id="accord5" style="border-radius: 10px; background-color:indianred; font-size: 8px; padding-left: 10px; padding-bottom: 15px; padding-top: 13px; margin-top:10px">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-pane-5" role="button" aria-expanded="false" aria-controls="collapse-pane-5" style="font-size:20px">
+                            Danh sách học sinh
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-pane-5" class="collapse" role="tabpanel" aria-labelledby="accord5"
+                     data-parent="#demo-accordion-collapse">
+                    <div class="card-body">
+
+                        <div class="row pt-1">
+                            <button type="button" id="btn-show-modal" class="btn btn-primary btn-lg" style="border-radius: 50%;  font-size: 26px; margin-left: 80%">
+                                +
+                            </button>
+                            <div class="modal fade" id="myModal1" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Thêm tài khoản con</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table pt-2" id="add-child-form">
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Ảnh đại diện
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="file" name="avatarSon" style=" width: 170px; margin-left: 20%">
+                                                        <div id="avatar-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Họ và tên
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="text" id="fullname">
+                                                        <div id="fullname-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Tên đăng nhập
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="text" id="username">
+                                                        <div id="username-error" class="error"></div>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Mật khẩu
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="password" id="password">
+                                                        <div id="password-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Ngày sinh
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="date" id="birthday">
+                                                        <div id="birthday-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tdl" style="padding-top: 19px;">
+                                                        Lớp
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <div class="form-wrapper">
+                                                            <select id="class" class="form-control" style="width: 300px">
+                                                                <option value="-1" disabled selected>Lớp</option>
+                                                                <option value="1">Lớp 1</option>
+                                                                <option value="2">Lớp 2</option>
+                                                                <option value="3">Lớp 3</option>
+                                                                <option value="4">Lớp 4</option>
+                                                                <option value="5">Lớp 5</option>
+                                                                <option value="6">Lớp 6</option>
+                                                                <option value="7">Lớp 7</option>
+                                                                <option value="8">Lớp 8</option>
+                                                                <option value="9">Lớp 9</option>
+                                                                <option value="10">Lớp 10</option>
+                                                                <option value="11">Lớp 11</option>
+                                                                <option value="12">Lớp 12</option>
+                                                            </select>
+                                                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                                                        </div>
+                                                        <div id="class-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="tdl">
+                                                        Email
+                                                    </td>
+                                                    <td class="tdr">
+                                                        <input type="text" id="email" />
+                                                        <div id="email-error" class="error"></div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="btn-addchild">Thêm</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (usernameC.Count() > 0)
+                        {
+                            foreach (var childAccount in Model.students.ToList().Where(x => x.parent_id == int.Parse(Session["UserID"].ToString())))
+                            {
+                                <div class="row pt-3">
+                                    <div class="col-4">
+                                        <a class="btn btn-primary p-2" data-toggle="modal" data-target="#avatar-@childAccount.student_id"
+                                           style="margin-left: 5%">
+                                            <img src="/Content/img/edit.png" width="20px" height="20px" alt="EditAvatar" />
+                                        </a>
+                                        <div class="modal" id="avatar-@childAccount.student_id">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" style="margin-left: 30%">Tải ảnh đại diện lên</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    @using (Html.BeginForm("EditSon",
+"Parent",
+FormMethod.Post,
+new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <div class="modal-body">
+                                                            <input type="file" name="files" id="files" class="form-control"
+                                                                    accept=".jpg,.png"/>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <td>
+                                                                        Tên học sinh <input type="text" name="idStudent" class="form-control" 
+                                                                                            value="@childAccount.student_id" required hidden  />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="fullname" class="form-control" value="@childAccount.fullname" required />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Tên tài khoản
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="username" class="form-control" value="@childAccount.username" required />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Ngày sinh
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="bod" class="form-control" value="@childAccount.birthday.GetValueOrDefault().ToString("dd/MM/yyyy")" required />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Email
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="email" class="form-control" value="@childAccount.email" required />
+                                                                    </td>
+                                                                </tr>
+
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <input type="submit" value="Hoàn tất" class="btn-outline-success" style="border:5%" />
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="~/Content/img/avatar/student/@childAccount.avatar" class="pb-2" style="height: 150px; width: 150px; margin-left: 40%" alt="" onerror="this.onerror = null; this.src='https://viima-app.s3.amazonaws.com/media/public/defaults/user-icon.png'" />
+
+                                    </div>
+
+                                    <div class="col-8">
+                                        <table class="table">
+                                            <tr>
+                                                <td class="tdl">
+                                                    Tên học sinh
+
+                                                </td>
+                                                <td class="tdr">
+                                                    @childAccount.fullname
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Tên tài khoản
+                                                </td>
+                                                <td class="tdr">
+                                                    @childAccount.username
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Ngày sinh
+                                                </td>
+                                                <td class="tdr">
+                                                    @childAccount.birthday
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdl">
+                                                    Email
+                                                </td>
+                                                <td class="tdr">
+                                                    @childAccount.email
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        { <div>Chưa có thông tin của con</div>}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" role="tab" id="accord6" style="border-radius: 10px; background-color: indianred; font-size: 20px; padding-left: 10px; padding-bottom: 15px; margin-top:10px">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#collapse-pane-6" role="button" aria-expanded="false"
+                           aria-controls="collapse-pane-6" style="font-size:20px">
+                            Xem lịch sử học tập
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-pane-6" class="collapse" role="tabpanel" aria-labelledby="accord6"
+                     data-parent="#demo-accordion-collapse">
+                    <div class="card-body">
+                        @if (hisStudent.Count() > 0)
+                        {
+                            <table class="table" style="text-align: center;">
+                                <tr>
+                                    <th>
+                                        Tên người học
+                                    </th>
+                                    <th>
+                                        Thứ
+                                    </th>
+                                    <th>
+                                        Thời gian học
+                                    </th>
+
+                                    <th>
+                                        Ngày đã học
+                                    </th>
+                                    <th>
+                                        Gia sư
+                                    </th>
+                                    <th>
+                                        Số buổi đã học
+                                    </th>
+                                </tr>
+
+                                @foreach (var hl in db.history_lessons.ToList().Where(x => x.student_id == int.Parse(Session["UserID"].ToString())))
+                                {
+                                    <tr>
+                                        <td>
+                                            @hl.student.fullname
+                                        </td>
+                                        <td>
+                                            @hl.day_otw
+                                        </td>
+                                        <td>
+                                            @hl.start_time - @hl.end_time
+                                        </td>
+                                        <td>
+                                            @hl.day
+                                        </td>
+                                        <td>
+                                            @hl.tutor.fullname
+                                        </td>
+                                        <td>
+                                            @hl.total_sessions
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </table>
+                        }
+                        else
+                        {
+                            <div>Chưa có lịch sử học</div>}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <script src="~/Content/vendor/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/jquery/jquery.bootstrap.wizard.js"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="~/Content/vendor/jquery/gsdk-bootstrap-wizard.js"></script>
+
+    <script src="~/Content/vendor/jquery/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(function () {
+            getSessionList(-1);
+
+            $("#select-dotw").on("change", function () {
+                var dotw = $(this).val();
+                getSessionList(dotw);
+            });
+            $("#btn-show-modal").on("click", function () {
+                // set default value form
+                $(".error").html("");
+                $("input").val("");
+                $("select").val(-1);
+                $("#myModal1").modal("show");
+            })
+
+            $("#btn-addchild").on("click", function () {
+                var child = {
+                    fullname: $("#add-child-form #fullname").val(),
+                    username: $("#add-child-form #username").val(),
+                    password: $("#add-child-form #password").val(),
+                    birthday: $("#add-child-form #birthday").val(),
+                    class: $("#add-child-form #class").val(),
+                    email: $("#add-child-form #email").val()
+                }
+                //
+                var emailFormat  = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var reg = new RegExp(emailFormat);
+                let flag;
+                var emailC = $("#add-child-form #email").val();
+        if(reg.test(emailC)){ flag = true;}else{ flag = false;}
+                let check = {
+                    fullname: false,
+                    username: false,
+                    password: false,
+                    birthday: false,
+                    class: false,
+                    email: false
+                }
+
+                if (child.fullname == "") {
+                    $("#add-child-form #fullname-error").html("Xin nhập họ và tên");
+                    check.fullname = false;
+                } else {
+                    $("#add-child-form #fullname-error").html("");
+                    check.fullname = true;
+                }
+
+                if (child.username == "") {
+                    $("#add-child-form #username-error").html("Xin nhập tên đăng nhập");
+                    check.username = false;
+                } else {
+                    $("#add-child-form #username-error").html("");
+                    check.username = true;
+                }
+                //password
+                if (child.password == "") {
+                    $("#add-child-form #password-error").html("Xin nhập mật khẩu");
+                    check.password = false;
+                } else {
+                    $("#add-child-form #password-error").html("");
+                    check.password = true;
+                }
+
+                //birthday
+                if (child.birthday == "") {
+                    $("#add-child-form #birthday-error").html("Xin nhập ngày sinh");
+                    check.birthday = false;
+                } else {
+                    $("#add-child-form #birthday-error").html("");
+                    check.birthday = true;
+                }
+
+                //class
+                if (child.class == null) {
+                    $("#add-child-form #class-error").html("Xin chọn trình độ");
+                    check.class = false;
+                } else {
+                    $("#add-child-form #class-error").html("");
+                    check.class = true;
+                }
+
+                //email
+                if (child.email=="" || flag == false) {
+                    $("#add-child-form #email-error").html("Xin nhập email hoặc email không đúng định dạng");
+                    check.email = false;
+                } else {
+                    $("#add-child-form #email-error").html("");
+                    check.email = true;
+                }
+                if (check.username && check.password && check.birthday && check.email && check.class && check.fullname) {
+                    child = JSON.stringify(child);
+                    addChild(child);
+                }
+            });
+            $("#btn-profile-save").on("click", function () {
+                var user = {
+                    fullname: $("#edit-profile #fullname").val(),
+                    username: $("#edit-profile #username").val(),
+                    address: $("#edit-profile #address").val(),
+                    phone: $("#edit-profile #phone").val(),
+                    email: $("#edit-profile #email").val()
+                }
+                let check = {
+                    fullname: false,
+                    username: false,
+                    address: false,
+                    phone: false,
+                    email: false
+                }
+                //fullname
+                if (user.fullname == "") {
+                    $("#edit-profile #fullname-error").html("Xin nhập fullname");
+                    check.fullname = false;
+                } else {
+                    $("#edit-profile #fullname-error").html("");
+                    check.fullname = true;
+                }
+                //username
+                if (user.username == "") {
+                    $("#edit-profile #username-error").html("Xin nhập username");
+                    check.username = false;
+                } else {
+                    $("#edit-profile #username-error").html("");
+                    check.username = true;
+                }
+                //password
+                if (user.address == "") {
+                    $("#edit-profile #address-error").html("Xin nhập address");
+                    check.address = false;
+                } else {
+                    $("#edit-profile #address-error").html("");
+                    check.address = true;
+                }
+
+                //birthday
+                if (user.phone == "") {
+                    $("#edit-profile #phone-error").html("Xin nhập phone");
+                    check.phone = false;
+                } else {
+                    $("#edit-profile #bphone-error").html("");
+                    check.phone = true;
+                }
+
+                //email
+                if (user.email == "") {
+                    $("#edit-profile #email-error").html("Xin nhập email");
+                    check.email = false;
+                } else {
+                    $("#edit-profile #email-error").html("");
+                    check.email = true;
+                }
+                if (check.username && check.fullname && check.address && check.email && check.phone) {
+                    user = JSON.stringify(user);
+                    editProfile(user)
+                }
+            })
+        })
+
+        function Base64toHex(base64) {
+            return window.atob(base64).split('')
+                .map(aChar => ('0' + aChar.charCodeAt(0).toString(16)).slice(-2)).join('');
+        }
+
+        function addChild(data) {
+            $.ajax({
+                type: "POST",
+                url: "/api/addChild/",
+                data: { data: data },
+                dataType: "json",
+                success: function (response) {
+                    alert(response.message);
+                    window.location.reload();
+                }
+            });
+        }
+        function editProfile(data) {
+            $.ajax({
+                type: "POST",
+                url: "/api/editProfile/",
+                data: { data: data },
+                dataType: "json",
+                success: function (response) {
+                    alert(response.message);
+                    window.location.reload();
+                }
+            });
+        }
+        function getSessionList(dotw) {
+            $.ajax({
+                type: "GET",
+                url: "/api/getSessionList/",
+                data: {dotw : dotw, student_id : @int.Parse(Session["UserID"].ToString())},
+                dataType: "html",
+                success: function (response) {
+                    $('#sessionlist').html(response)
+                    callStream();
+                }
+            });
+        }
+        function callStream() {
+            detectStream();
+            $(".student_sub").on("click", function (e) {
+                if ($(this).children().hasClass('stream')) {
+                    var id = $(this).attr("data-subjectId");
+                    var name = window.btoa(unescape(encodeURIComponent($(this).attr("data-name"))));
+                    var url = 'https://etuitor.herokuapp.com/live/parent' + `?p=${id.replace(/Thứ /gi, '').replace(/Chủ nhật/gi, '8')}&n=${Base64toHex(name)}&s=@Session.SessionID&t=${sessionStorage.getItem('token')}`;
+                    var strWindownFeatures = `toolbars=no,scrollbars=yes,status=no,resizable=no,location=no,width=${$(window).width()},height=${$(window).height()}`;
+                    WindowObject = window.open(url, "StreamEtutor", strWindownFeatures);
+                    WindowObject.document.close();
+                    WindowObject.focus();
+                } else {
+                    alert('Chưa tới giờ học');
+                    e.preventDefault();
+                }
+            });
+        }
+
+        function detectStream() {
+            var ws = new WebSocket('wss://etuitor.herokuapp.com/currentStream');
+
+            ws.onopen = function () {
+                ws.send(JSON.stringify({
+                    type: "parent"
+                }));
+            };
+
+            ws.onmessage = function (event) {
+                $(".student_sub").each(function () {
+                    var id = $(this).attr("data-subjectId");
+                    var convertId = id.replace(/Thứ /gi, '').replace(/Chủ nhật/gi, '8');
+                    var data = JSON.parse(event.data);
+                    for (let item of data['class']) {
+                        if (data['status'] === "OPEN" && convertId === item) {
+                            $(this).children().addClass("stream");
+                            $(this).children().removeClass("no-drop");
+                        } else {
+                            $(this).children().removeClass("stream");
+                            $(this).children().addClass("no-drop");
+                        }
+                    }
+                });
+            };
+        }
+        //Check file on page
+        var valid = false;
+
+        function validate_fileupload(input_element) {
+            var el = document.getElementById("feedback");
+            var fileName = input_element.value;
+            var allowed_extensions = new Array("jpg", "png");
+            var file_extension = fileName.split('.').pop();
+            var FileSize = input_element.files[0].size / 1024 / 1024;
+            for (var i = 0; i < allowed_extensions.length; i++) {
+                if (allowed_extensions[i] == file_extension && FileSize < 4) {
+                    valid = true; // valid file extension
+                    el.innerHTML = "";
+                    return;
+                }
+            }
+            el.innerHTML = "File không hợp lệ, vui lòng tải file có dung lượng dưới 4MB và được lưu dưới dạng file JPG, PNG";
+            valid = false;
+        }
+
+        function valid_form() {
+            return valid;
+        }
+    </script>
+}
+<!--   Core JS Files   -->

@@ -1,0 +1,171 @@
+﻿
+@{
+    string returnUrl = Request.QueryString["ReturnUrl"];
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Đăng nhập</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="fonts/linearicons/style.css">
+
+    <!-- STYLE CSS -->
+    <link href="~/Content/vendor/bootstrap/css/register.component.css" rel="stylesheet" />
+    <link href="~/Content/loader.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="wrapper" class="wrapper">
+        <div id="shadow" class="shadow d-none">
+            <div class="loader"></div>
+        </div>
+        <div class="inner">
+            <div class="register-form flash hide">
+                <form id="login" action="/User/Login" method="post">
+                    <img src="~/Content/img/register/registration-form-1.png" alt="" class="image-1">
+                    <h3>Đăng nhập</h3>
+
+                    <div id="default" class="default">
+                        <div class="d-none"><span style="color:green">@ViewBag.sc</span></div>
+                        <div class="msgErr d-none"><span style="color:red"></span></div>
+                        <div class="msgErr1 d-none"><span style="color:red"></span><a href="~/Home/Contact">tại đây</a></div>
+                        @*@if (ViewBag.sc != null)
+                        {
+                            <div><span style="color:green">@ViewBag.sc</span></div>
+                        }
+                        @if (ViewBag.msg != null)
+                        {
+                            <div><span style="color:red">@ViewBag.msg</span></div>
+                        }
+                        @if (ViewBag.msg1 != null)
+                        {
+                            <div><span style="color:red">@ViewBag.msg1  </span><a href="~/Home/Contact">tại đây</a></div>
+                        }*@
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Tên tài khoản" id="user"
+                                           name="email" class="form-control" autocomplete="off">
+                                    <span class="text-danger" id="username1"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="password" placeholder="Mật khẩu" id="pass"
+                                           name="password" class="form-control">
+                                    <span class="text-danger" id="pass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-holder" hidden>
+                            <span class="lnr lnr-lock"></span>
+                            <input type="text" class="form-control" name="returnUrl" value="@Request.QueryString["ReturnUrl"]" />
+
+                        </div>
+                        <p style="padding-bottom: 10px">Nếu bạn chưa có tài khoản, nhấn chọn <a href="@Url.Action("register","User")">Đăng ký</a></p>
+                        <a href="~/User/ForgotPassword" style="margin-left: 35%; margin-bottom: 20px">Quên mật khẩu ?</a>
+                    </div>
+                    <button type="submit">
+                        <span>Đăng nhập</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="register.component.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script>
+        var url = Request.Url.ToString();
+    </script>
+    <script type="text/javascript">
+        var loader = $("#shadow"),
+            msgErr = $('.msgErr'),
+            msgErr1 = $('.msgErr1');
+
+        $("#login").validate({
+            rules: {
+                email: {
+                    required: true
+                   
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+
+            },
+
+            messages: {
+                email: {
+                    required: "Vui lòng nhập tên tài khoản",
+
+                },
+                password: {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu phải có ít nhất 6 ký tự"
+                },
+
+            }
+        });
+
+        $('form').submit(function (event) {
+            var form = $(this);
+
+            loader.toggleClass('d-none');
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function (response) {
+                    var hasToken = response.TokenContext;
+                    if (hasToken) {
+                        storeToken(hasToken);
+                        window.location.href = `${window.location.origin}/${response.url}`;
+                    } else {
+                        loader.toggleClass('d-none');
+                        switch (response.status) {
+                            case 0:
+                            case 2:
+                                msgErr.children().text(response.message);
+                                if (msgErr.hasClass('d-none')) msgErr.removeClass('d-none');
+                                break;
+                            case 3:
+                                msgErr1.children().text(response.message);
+                                if (msgErr1.hasClass('d-none')) msgErr1.removeClass('d-none');
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    loader.toggleClass('d-none');
+                    alert(`${errorThrown} \n Vui lòng kiểm tra lại Username và Password`);
+                }
+            });
+
+            event.preventDefault();
+        });
+
+        function storeToken(token) {
+            if (typeof (Storage) !== "undefined") {
+                sessionStorage.setItem('token', token);
+            } else {
+                alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+            }
+        }
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
