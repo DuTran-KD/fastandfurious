@@ -36,7 +36,8 @@ namespace eTUTOR.Controllers
         {
             string email = "";
             string password = "";
-            var tutorEmail = model.tutors.FirstOrDefault(x => x.email == tutor.email);
+            var tutorEmail = model.tutors.FirstOrDefault(x => x.email == tutor.email || x.username == tutor.username);
+            
 
             if (tutorEmail == null)
             {
@@ -75,7 +76,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Email đã tồn tại !";
+                ViewBag.Er = "Tài khoản đã tồn tại !";
                 return View("Register");
             }
 
@@ -83,7 +84,8 @@ namespace eTUTOR.Controllers
         public ActionResult RegisterParent(parent parent/*, string password*/)
         {
             string password = "";
-            var parentEmail = model.parents.FirstOrDefault(x => x.email == parent.email);
+            var parentEmail = model.parents.FirstOrDefault(x => x.email == parent.email || x.username == parent.username);
+            
             if (parentEmail == null)
             {
 
@@ -96,7 +98,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Email đã tồn tại !";
+                ViewBag.Er = "Tài khoản đã tồn tại !";
                 return View("Register");
             }
         }
@@ -104,7 +106,8 @@ namespace eTUTOR.Controllers
         public ActionResult RegisterStudent(student student/*, string password*/)
         {
             string password = "";
-            var studentEmail = model.students.FirstOrDefault(x => x.email == student.email);
+            var studentEmail = model.students.FirstOrDefault(x => x.email == student.email || x.username == student.username);
+            
             if (studentEmail == null)
             {
                 student.status = 2;
@@ -116,7 +119,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Email đã tồn tại !";
+                ViewBag.Er = "Tài khoản đã tồn tại !";
                 return View("Register");
             }
 
