@@ -3,9 +3,8 @@
 
 @{
     ViewBag.Title = "RegisterTutor";
-
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string _stringIdUser = Session["UserID"].ToString();
+     string _stringIdUser = Session["UserID"].ToString();
     int _idUser = int.Parse(_stringIdUser);
     eTUITOREntities db = new eTUITOREntities();
     var sch = db.schedules.ToList().Where(x => x.tutor_id == Model.tutor_id && x.status == 1);
@@ -60,7 +59,7 @@
                         <select class="form-control" name="idSon" id="idSon">
                             @foreach (var item in listSon)
                             {
-                                <option value="@item.student_id">@item.fullname - @item.birthday</option>
+                                <option value="@item.student_id">(H&T) @item.fullname - (us) @item.username</option>
                             }
                         </select>
 
@@ -98,7 +97,7 @@
                 {
                     <thead>
 
-                        <tr>
+                        <tr style="text-align:center">
                             <th></th>
                             <th>Thứ</th>
                             <th>Thời gian học</th>
@@ -108,13 +107,13 @@
 
                     foreach (var item in sch)
                     {
-                        <tr id="listschedulee">
-                            <th><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" required /></th>
-                            <th scope="row" id="day-@item.schedule_id">@item.day_otw</th>
-                            <th id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</th>
-                            <th>
-                                <input type="number" id="soBuoi" name="soBuoi" min="5" max="99" value="10" class="form-control" style="width:50px" />
-                            </th>
+                        <tr id="listschedulee" style="text-align: center">
+                            <td><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" required /></td>
+                            <td scope="row" id="day-@item.schedule_id">@item.day_otw</td>
+                            <td id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</td>
+                            <td style="text-align:center">
+                                <input type="number" id="soBuoi" name="soBuoi" min="5" max="99" value="10" class="form-control" style="width:100px;margin:auto" />
+                            </td>
                         </tr>
                     }
                 }

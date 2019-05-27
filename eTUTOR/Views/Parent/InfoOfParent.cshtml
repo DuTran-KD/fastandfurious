@@ -33,6 +33,7 @@
             color: red;
             text-align: left;
         }
+
         .stream {
             color: #ea1111;
         }
@@ -71,11 +72,11 @@
 
                             <div class="modal-body">
                                 <span style="color:red" id="feedback"></span>
-                                <input type="file" name="files" id="files" class="form-control" 
+                                <input type="file" name="files" id="files" class="form-control"
                                        accept=".jpg,.png" onchange="validate_fileupload(this);" /><br><br>
                             </div>
                             <div class="modal-footer">
-                                <input type="submit" value="Tải ảnh"  class="btn-outline-success" 
+                                <input type="submit" value="Tải ảnh" class="btn-outline-success"
                                        style="border:5%" onclick="return valid_form();" />
                             </div>
                         }
@@ -186,18 +187,18 @@
                                                     <input type="email" id="email" value="@Model.email" disabled>
                                                     @*<div id="email-error" class="error"></div>
                                                 </td>*@
-                </tr>
+                                            </tr>
 
 
-            </table>
-        </div>
+                                        </table>
+                                    </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn-profile-save" onclick="checkinput">Lưu</button>
-        </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="btn-profile-save" onclick="checkinput()">Lưu</button>
+                                </div>
 
-    </div>
-</div>
+                            </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -245,27 +246,7 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header" role="tab" id="accord4" style="border-radius: 10px; background-color:indianred; font-size: 8px; padding-left: 10px; padding-bottom: 15px; padding-top: 13px; margin-top:10px">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-pane-4" role="button" aria-expanded="false" aria-controls="collapse-pane-4" style="font-size:20px">
-                            Danh sách buổi đang học
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapse-pane-4" class="collapse" role="tabpanel" aria-labelledby="accord4"
-                     data-parent="#demo-accordion-collapse">
-                    <div class="card-body row">
-                        <div class="col-6">
-                            <img src="~/Content/img/avatar/1.jpg" style="width: 270px; height:280px" alt="">
-                        </div>
-                        <div class="col-6">
-                            <img src="~/Content/img/avatar/1.jpg" style="width: 270px; height:280px" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="card">
                 <div class="card-header" role="tab" id="accord5" style="border-radius: 10px; background-color:indianred; font-size: 8px; padding-left: 10px; padding-bottom: 15px; padding-top: 13px; margin-top:10px">
                     <h5 class="mb-0">
@@ -411,12 +392,12 @@ new { enctype = "multipart/form-data" }))
                                                     {
                                                         <div class="modal-body">
                                                             <input type="file" name="files" id="files" class="form-control"
-                                                                    accept=".jpg,.png"/>
+                                                                   accept=".jpg,.png" />
                                                             <table class="table">
                                                                 <tr>
                                                                     <td>
-                                                                        Tên học sinh <input type="text" name="idStudent" class="form-control" 
-                                                                                            value="@childAccount.student_id" required hidden  />
+                                                                        Tên học sinh <input type="text" name="idStudent" class="form-control"
+                                                                                            value="@childAccount.student_id" required hidden />
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" name="fullname" class="form-control" value="@childAccount.fullname" required />
@@ -608,7 +589,7 @@ new { enctype = "multipart/form-data" }))
 
     <script type="text/javascript">
 
-
+        var editStatus = false;
         $(function () {
             getSessionList(-1);
 
@@ -761,10 +742,14 @@ new { enctype = "multipart/form-data" }))
                     check.email = true;
                 }
                 if (check.username && check.fullname && check.address && check.email && check.phone) {
+                    editStatus = true;
                     user = JSON.stringify(user);
                     editProfile(user)
+
                 }
+                
             })
+            
         })
 
         function Base64toHex(base64) {
@@ -787,7 +772,7 @@ new { enctype = "multipart/form-data" }))
         function editProfile(data) {
             $.ajax({
                 type: "POST",
-                url: "/api/editProfile/",
+                url: "http://localhost:52781/api/editProfile/",
                 data: { data: data },
                 dataType: "json",
                 success: function (response) {
@@ -874,6 +859,11 @@ new { enctype = "multipart/form-data" }))
 
         function valid_form() {
             return valid;
+        }
+
+        //validation form edit
+        function checkinput() {
+            return editStatus;
         }
     </script>
 }

@@ -22,7 +22,11 @@
 </head>
 
 <body>
-
+    <style>
+        .text-danger{
+            color:red;
+        }
+    </style>
     <div class="wrapper">
         <div class="inner">
             <div class="register-form flash hide validate-form">
@@ -51,7 +55,7 @@
                             <div class="text-danger focus-input100" id="emails"></div>
                         </div>
                         <div class="form-holder wrap-input100 validate-input form-group" data-validate="Mật khẩu không được rỗng">
-                            <input id="password" type="password" class="form-control input100" name="password" placeholder="Mật khẩu" autocomplete="off">
+                            <input id="password" type="password" class="form-control input100" name="password" placeholder="Mật khẩu" maxlength="16" autocomplete="off">
                             <div class="text-danger focus-input100" id="passwords"></div>
                         </div>
                         <div class="form-holder wrap-input100 validate-input form-group input100" data-validate="Nhập lại mật khẩu không được rỗng và phải trùng với mật khẩu">
@@ -125,7 +129,6 @@
                     break;
                 case "2":
                     check = validateForStudent();
-                    break;
                 default:
                     check = false;
             }
@@ -252,6 +255,10 @@
                 document.getElementById('emails').innerHTML = " ** Email phải đúng định dạng: ex@abc.xyz";
                 notError = false;
             }
+            if (password.length < 8) {
+                document.getElementById('passwords').innerHTML = " ** Mật khẩu phải từ 8 - 16 kí tự";
+                notError = false;
+            }
             if (password == "") {
                 document.getElementById('passwords').innerHTML = " ** Mật khẩu không được rỗng";
                 notError = false;
@@ -327,6 +334,10 @@
                 document.getElementById('passwords').innerHTML = " ** Mật khẩu không được rỗng";
                 notError = false;
             }
+            if (password.length < 8) {
+                document.getElementById('passwords').innerHTML = " ** Mật khẩu phải từ 8 - 16 kí tự";
+                notError = false;
+            }
             if (password != confirmpassword) {
                 document.getElementById('confirmpasswords').innerHTML = " ** Xác nhận mật khẩu phải trùng với Mật khẩu";
                 notError = false;
@@ -382,6 +393,10 @@
             }
             if (password == "") {
                 document.getElementById('passwords').innerHTML = " ** Mật khẩu không được rỗng";
+                notError = false;
+            }
+            if (password.length < 8) {
+                document.getElementById('passwords').innerHTML = " ** Mật khẩu phải từ 8 - 16 kí tự";
                 notError = false;
             }
             if (password != confirmpassword) {

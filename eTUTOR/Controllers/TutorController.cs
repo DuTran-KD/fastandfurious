@@ -396,6 +396,7 @@ namespace eTUTOR.Controllers
             string nameSub = nameSubject.Trim();
             try
             {
+                if(nameSub != null) { 
                 var subnew = new subject();
                 subnew.subject_name = nameSubject;
                 subnew.tutor_id = idTutor;
@@ -403,6 +404,12 @@ namespace eTUTOR.Controllers
                 db.SaveChanges();
                 setAlert("Thêm môn học thành công", "success");
                 return RedirectToAction("InfoOfTutor");
+                }
+                else
+                {
+                    setAlert("Môn học không được để trống", "error");
+                    return RedirectToAction("InfoOfTutor");
+                }
             }
             catch
             {
@@ -419,12 +426,14 @@ namespace eTUTOR.Controllers
             var checkCourse = db.sessions.FirstOrDefault(x => x.subject_id == idSubject);
             if (subj != null)
             {
-                if (checkCourse != null)
+                if (checkCourse == null)
                 {
                     try
                     {
                         db.subjects.Remove(subj);
                         db.SaveChanges();
+
+                        setAlert("Xóa thành công", "success");
                         return RedirectToAction("InfoOfTutor");
                     }
 

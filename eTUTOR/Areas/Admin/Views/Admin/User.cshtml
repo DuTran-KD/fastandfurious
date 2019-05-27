@@ -7,6 +7,7 @@
     var tutor = db.tutors.ToList(); //used in line 91-foreach
     var parent = db.parents.ToList(); //used in line 159-foreach
     var student = db.students.ToList(); //used in line 226-foreach
+   
 }
 
 <!DOCTYPE html>
@@ -59,6 +60,8 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+    @if(tutor.Where( x=> x.status == 2).Count() > 0){
+        
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -127,6 +130,9 @@
             <!-- end row -->
         </div>
     </div>
+    }
+    @if(parent.Where(x => x.status == 2).Count() > 0)
+    {
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -194,6 +200,10 @@
             <!-- end row -->
         </div>
     </div>
+    }
+    @if (student.Where(x => x.status == 2).Count() > 0)
+    {
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -227,26 +237,26 @@
                                         {
 
 
-                                        <tr>
-                                            <td>@item.fullname</td>
-                                            <td>@item.email</td>
-                                            <td>@item.phone</td>
-                                            <td>@item.status</td>
-                                            <td>
-                                                <a href="@Url.Action("detail","Student",new { id = item.student_id })">
-                                                    <i class="material-icons">
-                                                        remove_red_eye
-                                                    </i>
-                                                </a>
+                                            <tr>
+                                                <td>@item.fullname</td>
+                                                <td>@item.email</td>
+                                                <td>@item.phone</td>
+                                                <td>@item.status</td>
+                                                <td>
+                                                    <a href="@Url.Action("detail", "Student", new { id = item.student_id })">
+                                                        <i class="material-icons">
+                                                            remove_red_eye
+                                                        </i>
+                                                    </a>
 
-                                            </td>
-                                            <td>
-                                                <label class="switch">
-                                                    <input type="checkbox" name="check" id="slider-duyet" onchange="duyetstudent(@item.student_id)">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input type="checkbox" name="check" id="slider-duyet" onchange="duyetstudent(@item.student_id)">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
@@ -261,6 +271,7 @@
             <!-- end row -->
         </div>
     </div>
+    }
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
