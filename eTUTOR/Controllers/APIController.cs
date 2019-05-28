@@ -220,7 +220,7 @@ namespace eTUTOR.Controllers
                 db.students.Add(st);
                 db.SaveChanges();
                 message = "Thêm học sinh thành công";
-                var response = new { message= message, status = status};
+                var response = new { message = message, status = status };
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
             else
@@ -230,23 +230,22 @@ namespace eTUTOR.Controllers
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
         [HttpPost]
         public JsonResult editProfile(string data)
         {
-        
+
             int parentId = int.Parse(Session["UserID"].ToString());
             string message;
             var status = HttpStatusCode.OK;
             JObject parent = JObject.Parse(data);
             parent pr = db.parents.Find(parentId);
-           
+
             pr.fullname = parent["fullname"].ToString();
             pr.username = parent["username"].ToString();
             pr.address = parent["address"].ToString();
             pr.phone = parent["phone"].ToString();
-            pr.email = parent["email"].ToString();
-            
+
             db.SaveChanges();
             message = "Cập nhật thông tin thành công ";
             var response = new { message = message, status = status };
@@ -266,7 +265,6 @@ namespace eTUTOR.Controllers
             tt.address = tutor["address"].ToString();
             tt.birthday = DateTime.ParseExact(tutor["birthday"].ToString(), "dd/MM/yyyy", null);
             tt.phone = tutor["phone"].ToString();
-            tt.email = tutor["email"].ToString();
             tt.specialized = tutor["specialized"].ToString();
             tt.job = tutor["job"].ToString();
             tt.experience = tutor["experience"].ToString();
@@ -290,7 +288,6 @@ namespace eTUTOR.Controllers
             st.parent.address = student["address"].ToString();
             st.birthday = DateTime.ParseExact(student["birthday"].ToString(), "dd/MM/yyyy", null);
             st.phone = student["phone"].ToString();
-            st.email = student["email"].ToString();
             st.@class = int.Parse(student["class"].ToString());
 
             db.SaveChanges();

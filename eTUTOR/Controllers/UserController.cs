@@ -76,7 +76,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Tài khoản đã tồn tại !";
+                ViewBag.Er = "Username hoặc email đã tồn tại !";
                 return View("Register");
             }
 
@@ -98,7 +98,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Tài khoản đã tồn tại !";
+                ViewBag.Er = "Username hoặc email đã tồn tại !";
                 return View("Register");
             }
         }
@@ -119,7 +119,7 @@ namespace eTUTOR.Controllers
             }
             else
             {
-                ViewBag.Er = "Tài khoản đã tồn tại !";
+                ViewBag.Er = "Username hoặc email đã tồn tại !";
                 return View("Register");
             }
 
