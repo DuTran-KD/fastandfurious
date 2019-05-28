@@ -156,30 +156,30 @@
         
         $("#contact-form").validate({
             rules: {
-                user: "required",
-                mobileNumber: {
+                fullname: "required",
+                phone: {
                     required: true,
                     minlength: 10
                 },
-                emails: {
+                email: {
                     required: true,
                     email: true
                 },
-                subject: "required",
+                title: "required",
                 content: "required",
             },
 
             messages: {
-                user: "Vui lòng nhập họ và tên",
-                mobileNumber: {
+                fullname: "Vui lòng nhập họ và tên",
+                phone: {
                     required: "Vui lòng nhập số điện thoại",
                     minlength: "Số điện thoại phải là số",
                 },
-                emails: {
+                email: {
                     required: "Vui lòng nhập Email",
                     minlength: "Email không đúng định dạng",
                 },
-                subject: "Vui lòng nhập chủ đề",
+                title: "Vui lòng nhập chủ đề",
                 content: "Vui lòng nhập lời nhắn",
             }
         });
