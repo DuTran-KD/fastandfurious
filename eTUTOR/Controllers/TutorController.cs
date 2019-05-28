@@ -146,6 +146,7 @@ namespace eTUTOR.Controllers
                     newss.status_admin = 2;
                     newss.status_tutor = 2;
                     newss.status_id = 2;
+                    newss.schedule_id = schh.schedule_id;
                     newss.dateCreate = DateTime.Now;
                     db.sessions.Add(newss);
                     db.SaveChanges();
@@ -181,6 +182,7 @@ namespace eTUTOR.Controllers
                     newss.status_admin = 2;
                     newss.status_tutor = 2;
                     newss.status_id = 2;
+                    newss.schedule_id = schh.schedule_id;
                     newss.dateCreate = DateTime.Now;
                     db.sessions.Add(newss);
                     db.SaveChanges();

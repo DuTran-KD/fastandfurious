@@ -138,13 +138,13 @@ namespace eTUTOR.Controllers
             if (day == "all")
             {
                 sessionApproved = db.sessions.Where(m => m.tutor_id == tutor_id
-                && m.status_admin == 1).ToList();
+                && m.status_admin == 1).OrderBy(x => x.day_otw).ToList();
             }
             else
             {
                 sessionApproved = db.sessions.Where(m => m.day_otw == day
                 && m.tutor_id == tutor_id
-                && m.status_admin == 1).ToList();
+                && m.status_admin == 1).OrderBy(x => x.day_otw).ToList();
             }
             List<int> group = new List<int>();
             List<object> jSessionList = new List<object>();

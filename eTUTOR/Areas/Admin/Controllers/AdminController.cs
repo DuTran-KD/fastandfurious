@@ -51,7 +51,7 @@ namespace eTUTOR.Areas.Admin.Controllers
         {
             Session.Clear();
             Session.RemoveAll();
-            return RedirectToAction("Login");
+            return View("Login","Admin");
         }
         [Filter.AuthorizeAdmin]
         public ActionResult Course()

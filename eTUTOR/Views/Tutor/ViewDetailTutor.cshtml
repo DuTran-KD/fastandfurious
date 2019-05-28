@@ -146,7 +146,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Họ tên" id="user"
+                                        <input type="text" placeholder="Họ tên" id="name"
                                                name="name" class="form-control" autocomplete="off">
                                         <span class="text-danger" id="username"></span>
                                     </div>
@@ -156,14 +156,14 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Số điện thoại" id="mobileNumber"
+                                        <input type="text" placeholder="Số điện thoại" id="phone"
                                                name="phone" class="form-control" autocomplete="off">
                                         <span class="text-danger" id="mobileno"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="email" placeholder=" Email" id="emails"
+                                        <input type="email" placeholder=" Email" id="email"
                                                name="email" class="form-control">
                                         <span class="text-danger" id="emailids"></span>
                                     </div>
@@ -177,8 +177,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea rows="5" placeholder="Lời nhắn..." id="content"
-                                          name="content" class="form-control"></textarea>
+                                <textarea rows="5" placeholder="Lời nhắn..." id="message"
+                                          name="message" class="form-control"></textarea>
                                 <span class="text-danger" id="cont"></span>
                             </div>
                             <div class="form-group" style="margin-left: 35%">
@@ -281,31 +281,31 @@
 
         $("#contact-form").validate({
             rules: {
-                user: "required",
-                mobileNumber: {
+                name: "required",
+                phone: {
                     required: true,
                     minlength: 10
                 },
-                emails: {
+                email: {
                     required: true,
                     email: true
                 },
                 subject: "required",
-                content: "required",
+                message: "required",
             },
 
             messages: {
-                user: "Vui lòng nhập họ và tên",
-                mobileNumber: {
+                name: "Vui lòng nhập họ và tên",
+                phone: {
                     required: "Vui lòng nhập số điện thoại",
                     minlength: "Số điện thoại phải là số và đủ 10 kí tự",
                 },
-                emails: {
+                email: {
                     required: "Vui lòng nhập Email",
                     minlength: "Email không đúng định dạng",
                 },
                 subject: "Vui lòng nhập chủ đề",
-                content: "Vui lòng nhập lời nhắn",
+                message: "Vui lòng nhập lời nhắn",
             }
 
         });

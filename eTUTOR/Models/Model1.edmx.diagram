@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1616701467774a978870b96f7ea16d4e" Name="Diagram1">
+      <Diagram DiagramId="8469b29f68174cdd9cebd185a67cc3cc" Name="Diagram1">
         <EntityTypeShape EntityType="capstone2019Model.about" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="capstone2019Model.admin" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="capstone2019Model.comment" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />

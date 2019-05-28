@@ -24,7 +24,7 @@
     @if (!sessionapproved.Any())
     {
         <tr>
-            <td colspan="5">Hông có buổi học nào</td>
+            <td colspan="5">Không có buổi học nào</td>
         </tr>
     }
     else
@@ -41,6 +41,7 @@
 
                 <td>
                     @session.student.fullname
+                    
                 </td>
 
                 <td>

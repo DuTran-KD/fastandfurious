@@ -849,6 +849,14 @@
             return window.atob(base64).split('')
                 .map(aChar => ('0' + aChar.charCodeAt(0).toString(16)).slice(-2)).join('');
         }
+        function getUniqueElements(array) {
+            var counter = {};
+            for (var i = 0; i < array.length; ++i) {
+                var key = array[i];
+                counter[key] = 1;
+            }
+            return Object.keys(counter);
+        }
 
         function getSessionApproved(dotw) {
                 $.ajax({
@@ -859,13 +867,16 @@
                     success: function (response) {
                         response = response.data
                         console.log(response);
+                        //response = getUniqueElements(response);
                         $("#sessionapproved").find("tbody").empty();
                         var html = "";
                         for (var i = 0; i < response.length; i++) {
                             var user = [];
                             for (var j = 0; j < response[i].students.length; j++) {
-                                user.push(`<a href="#" class="student-detail" data-id="${ response[i].students[j].id}">${response[i].students[j].name}</a>`);
+                            //for (var j = 0; j < 2; j++) {
+                                user.push(`<a href="javascript:void(0)" class="student-detail" data-id="${ response[i].students[j].id}">${response[i].students[j].name}</a>`);
                             }
+                            user = getUniqueElements(user);
                             html += `<tr>
                                         <td>${response[i].dayotw}</td>
                                         <td>${response[i].time.start.Hours}:${response[i].time.start.Minutes} - ${response[i].time.end.Hours}:${response[i].time.end.Minutes}</td>
