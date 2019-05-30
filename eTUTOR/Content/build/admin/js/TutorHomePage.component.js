@@ -43,6 +43,7 @@ function duyettutor(id) {
     var method = "POST";
     request.open(method, url);
     request.send();
+    $('#tt-' + id).hide();
 }
 // duyet view user bang parent
 function duyetparent(id) {
@@ -52,6 +53,7 @@ function duyetparent(id) {
     var method = "POST";
     request.open(method, url);
     request.send();
+    $('#pr-'+ id).hide();
 }
 // duyet view user bang student
 function duyetstudent(id) {
@@ -61,6 +63,7 @@ function duyetstudent(id) {
     var method = "POST";
     request.open(method, url);
     request.send();
+    $('#st-' + id).hide();
 }
 //KHOA
 function khoatutor(id) {
