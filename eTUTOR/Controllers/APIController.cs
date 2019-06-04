@@ -51,11 +51,11 @@ namespace eTUTOR.Controllers
             List<session> sessionList;
             if (day == "all")
             {
-                sessionList = db.sessions.Where(m => m.student_id == student_id).ToList();
+                sessionList = db.sessions.Where(m => m.student_id == student_id).OrderBy(x => x.day_otw).ToList();
             }
             else
             {
-                sessionList = db.sessions.Where(m => m.day_otw == day && m.student_id == student_id).ToList();
+                sessionList = db.sessions.Where(m => m.day_otw == day && m.student_id == student_id).OrderBy(x => x.day_otw).ToList();
             }
             ViewData["sessionlist"] = sessionList;
             return PartialView("SessionList");
@@ -94,11 +94,11 @@ namespace eTUTOR.Controllers
             List<session> sessionList;
             if (day == "all")
             {
-                sessionList = db.sessions.Where(m => m.student_id == student_id).ToList();
+                sessionList = db.sessions.Where(m => m.student_id == student_id).OrderBy(x => x.day_otw).ToList();
             }
             else
             {
-                sessionList = db.sessions.Where(m => m.day_otw == day && m.student_id == student_id).ToList();
+                sessionList = db.sessions.Where(m => m.day_otw == day && m.student_id == student_id).OrderBy(x => x.day_otw).ToList();
             }
             ViewData["sessionlist"] = sessionList;
             return PartialView("SessionTutorList");
@@ -171,6 +171,7 @@ namespace eTUTOR.Controllers
                         tutorid = session.tutor_id,
                         students = student,
                         subjectid = session.subject_id,
+                        subjectname = session.subject.subject_name,
                         dayotw = session.day_otw,
                         time = new
                         {

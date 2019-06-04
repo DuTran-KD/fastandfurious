@@ -331,7 +331,7 @@
                         </div>
                         <div id="collapse-pane-2" class="collapse" role="tabpanel" aria-labelledby="accord2"
                              data-parent="#demo-accordion-collapse">
-                            <div class="card-body">
+                            <div class="card-body" style="width:800px">
                                 <div class="form-wrapper pb-3">
                                     <select name="" id="select-dotw" class="form-control"
                                             style="border: none; border: 2px solid black; width: 30%; margin-left: 70%">
@@ -347,7 +347,7 @@
                                     </select>
                                     <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
                                 </div>
-                                <table class="table" style="text-align: center;" id="sessionapproved">
+                                <table class="table" style="text-align: center;width:100%" id="sessionapproved">
                                     <thead>
                                         <tr>
                                             <th>Thứ</th>
@@ -873,14 +873,14 @@
                         for (var i = 0; i < response.length; i++) {
                             var user = [];
                             for (var j = 0; j < response[i].students.length; j++) {
-                            //for (var j = 0; j < 2; j++) {
-                                user.push(`<a href="javascript:void(0)" class="student-detail" data-id="${ response[i].students[j].id}">${response[i].students[j].name}</a>`);
+                                //for (var j = 0; j < 2; j++) {
+                                user.push(`<a href="javascript:void(0)" class="student-detail" data-id="${response[i].students[j].id}">${response[i].students[j].name} <i>(${response[i].subjectname})</i></a>`);
                             }
                             user = getUniqueElements(user);
                             html += `<tr>
-                                        <td>${response[i].dayotw}</td>
-                                        <td>${response[i].time.start.Hours}:${response[i].time.start.Minutes} - ${response[i].time.end.Hours}:${response[i].time.end.Minutes}</td>
-                                        <td>${user.join(", ")}</td>
+                                        <td style="width:100px">${response[i].dayotw}</td>
+                                        <td style="width:150px">${response[i].time.start.Hours}:${response[i].time.start.Minutes} - ${response[i].time.end.Hours}:${response[i].time.end.Minutes}</td>
+                                        <td style="width:200px">${user.join(", ")}</td>
                                         <td>${user.length}</td>
                                         <td>${response[i].total}</td>
                                         <td>

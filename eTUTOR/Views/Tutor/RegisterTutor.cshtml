@@ -84,8 +84,15 @@
                     foreach (var item in sch)
                     {
                         <tr id="listschedulee" style="text-align:center">
-                            <td class="checkbox-group required"><input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" /></td>
-                            <td scope="row" id="day-@item.schedule_id">@item.day_otw</td>
+                            <td class="checkbox-group required">
+                                <input type="checkbox" name="idschedule" class="idschedule" value="@item.schedule_id" />
+                                (@item.sessions.ToList().Where(x => x.schedule_id == item.schedule_id).Count())
+                                @if(item.sessions.ToList().Where(x => x.schedule_id == item.schedule_id).Count() >= 2)
+                                {
+                                    <p style="color:darkred">Giờ học đã đầy</p>
+                                }
+                            </td>
+                            <td scope="row" id="day-@item.schedule_id">@item.day_otw </td>
                             <td id="start-end-@item.schedule_id">@item.start_time.Value.Hours h - @item.end_time.Value.Hours h</td>
                             <td>
                                 <input type="number" id="soBuoi" name="soBuoi" max="99" min="5" value="10" class="form-control" style="width:100px; margin:auto" />
